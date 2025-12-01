@@ -66,6 +66,8 @@ export interface ChatMessage {
   // For UI state tracking during streaming
   status?: string; 
   progress?: number;
+  options?: string[];
+  requiresConfirmation?: boolean;
 }
 
 // --- CrewAI Backend Types ---
@@ -120,6 +122,13 @@ export interface Job {
   share_slug?: string;
   created_at?: string;
   status?: string;
+}
+
+export interface ConfirmRequest {
+  thread_id: string;
+  run_id?: string;
+  action: 'approve' | 'reject';
+  feedback?: string;
 }
 
 export interface AgentRequest {
