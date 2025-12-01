@@ -81,6 +81,63 @@ export interface CrewAIEvent {
     share_slug?: string;
     video_url?: string;
     error?: string;
+    run_id?: string;
+    thread_id?: string;
     [key: string]: any;
   };
+}
+
+// Workflow & Jobs
+
+export interface ClipSpec {
+  idx: number;
+  desc: string;
+  begin_s: number;
+  end_s: number;
+  keyframes?: {
+    in?: string;
+    out?: string;
+  };
+}
+
+export interface PlanRequest {
+  goal: string;
+  total_duration?: number; // <= 120
+  styles?: string[];
+  image_control?: boolean;
+  num_clips?: number;
+}
+
+export interface PlanResponse {
+  storyboards: ClipSpec[];
+}
+
+export interface Job {
+  run_id?: string;
+  slogan?: string;
+  cover_url?: string;
+  video_url?: string;
+  share_slug?: string;
+  created_at?: string;
+  status?: string;
+}
+
+export interface AgentRequest {
+  prompt?: string;
+  img?: string;
+  thread_id?: string;
+  run_id?: string;
+  goal?: string;
+  styles?: string[];
+  total_duration?: number;
+  num_clips?: number;
+  image_control?: boolean;
+  use_crewai?: boolean;
+}
+
+export interface ChatRequest {
+  action: 'start' | 'message';
+  thread_id?: string;
+  run_id?: string;
+  message?: string;
 }

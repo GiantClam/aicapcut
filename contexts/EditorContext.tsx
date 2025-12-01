@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
 import { VideoProject, TimelineItem, Track, Asset } from '../types';
 import { INITIAL_PROJECT, INITIAL_ASSETS } from '../constants';
@@ -28,7 +29,7 @@ export const EditorProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [assets, setAssets] = useState<Asset[]>(INITIAL_ASSETS);
   
   const lastTimeRef = useRef<number>(0);
-  const requestRef = useRef<number>();
+  const requestRef = useRef<number | null>(null);
 
   const animate = (time: number) => {
     if (lastTimeRef.current !== 0) {

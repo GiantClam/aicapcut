@@ -1,3 +1,4 @@
+
 import { GoogleGenAI, Type, FunctionDeclaration, Modality } from "@google/genai";
 import { VideoProject, ChatAttachment, ItemType } from '../types';
 
@@ -308,22 +309,22 @@ export const processUserRequest = async (userMessage: string, currentProject: Vi
             console.log("Tool Call:", call.name, call.args);
             
             if (call.name === 'generate_image') {
-                const attachment = await generateImage(call.args['prompt']);
+                const attachment = await generateImage(String(call.args['prompt']));
                 return { text: `I've generated an image for "${call.args['prompt']}".`, attachment: attachment || undefined };
             }
             
             if (call.name === 'generate_video') {
-                const attachment = await generateVideo(call.args['prompt']);
+                const attachment = await generateVideo(String(call.args['prompt']));
                 return { text: `I've generated a video for "${call.args['prompt']}".`, attachment: attachment || undefined };
             }
 
             if (call.name === 'generate_speech') {
-                const attachment = await generateSpeech(call.args['text']);
+                const attachment = await generateSpeech(String(call.args['text']));
                 return { text: `I've created the voiceover.`, attachment: attachment || undefined };
             }
 
             if (call.name === 'edit_timeline') {
-                const newProject = await editTimelineProject(call.args['instruction'], currentProject);
+                const newProject = await editTimelineProject(String(call.args['instruction']), currentProject);
                 if (newProject) {
                     return { text: `I've updated the timeline based on: ${call.args['instruction']}`, projectUpdate: newProject };
                 } else {
