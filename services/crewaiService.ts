@@ -185,18 +185,3 @@ export const stitchVideo = async (runId: string, segments: string[]): Promise<{ 
     if (!response.ok) throw new Error('Stitching failed');
     return await response.json();
 };
-
-/**
- * Confirm the storyboard plan to proceed with production.
- * Endpoint: POST /crewai/storyboard/confirm
- */
-export const confirmStoryboard = async (threadId: string): Promise<any> => {
-    const response = await fetch(`${BASE_URL}/crewai/storyboard/confirm`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ thread_id: threadId }),
-        credentials: 'omit'
-    });
-    if (!response.ok) throw new Error('Confirmation failed');
-    return await response.json();
-};

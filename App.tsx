@@ -1,13 +1,28 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { EditorProvider } from './contexts/EditorContext';
 import ChatInterface from './components/ChatInterface';
 import EditorPanel from './components/VideoEditor/EditorPanel';
+import LandingPage from './components/LandingPage';
 import { Layout } from 'lucide-react';
 
 function App() {
+  const [hasAccess, setHasAccess] = useState(false);
+  const [isLoadingAuth, setIsLoadingAuth] = useState(true);
+
+  // Editor State
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState(400);
   const [isResizing, setIsResizing] = useState(false);
+
+  useEffect(() => {
+    // Check for "Auth" token
+    const access = localStorage.getItem('ai-capcut-access');
+    if (access === 'true') {
+      setHasAccess(true);
+    }
+    setIsLoadingAuth(false);
+  }, []);
 
   const startResizing = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
@@ -40,6 +55,14 @@ function App() {
       document.body.style.userSelect = '';
     };
   }, [isResizing]);
+
+  if (isLoadingAuth) {
+    return <div className="h-screen w-full bg-black text-white flex items-center justify-center">Loading...</div>;
+  }
+
+  if (!hasAccess) {
+    return <LandingPage onGrantAccess={() => setHasAccess(true)} />;
+  }
 
   return (
     <EditorProvider>
