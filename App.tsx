@@ -2,12 +2,16 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { EditorProvider } from './contexts/EditorContext';
 import ChatInterface from './components/ChatInterface';
+import { Sidebar } from './components/Sidebar';
 import EditorPanel from './components/VideoEditor/EditorPanel';
 import LandingPage from './components/LandingPage';
 import { Layout } from 'lucide-react';
+import { supabase } from './lib/supabaseClient';
+import { Session } from '@supabase/supabase-js';
 
 function App() {
-  const [hasAccess, setHasAccess] = useState(false);
+  const [session, setSession] = useState<Session | null>(null);
+  const [isAllowed, setIsAllowed] = useState<boolean | null>(null);
   const [isLoadingAuth, setIsLoadingAuth] = useState(true);
 
   // Editor State
@@ -15,14 +19,70 @@ function App() {
   const [sidebarWidth, setSidebarWidth] = useState(400);
   const [isResizing, setIsResizing] = useState(false);
 
+  // Session State
+  const [activeRunId, setActiveRunId] = useState<string | null>(null);
+  // Reset key to force re-initialization even if activeRunId is already null
+  const [resetKey, setResetKey] = useState(0);
+
+  const handleNewProject = () => {
+    setActiveRunId(null);
+    setResetKey(prev => prev + 1);
+  };
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    setActiveRunId(null);
+  };
+
+  // Sidebar State
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+
   useEffect(() => {
-    // Check for "Auth" token
-    const access = localStorage.getItem('ai-capcut-access');
-    if (access === 'true') {
-      setHasAccess(true);
-    }
-    setIsLoadingAuth(false);
+    // Initial session check
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      if (session) {
+        checkUserAuthorization(session.user.id);
+      } else {
+        setIsLoadingAuth(false);
+      }
+    });
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+      if (session) {
+        checkUserAuthorization(session.user.id);
+      } else {
+        setIsAllowed(null);
+        setIsLoadingAuth(false);
+      }
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
+
+  const checkUserAuthorization = async (userId: string) => {
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('is_allowed')
+        .eq('id', userId)
+        .single();
+
+      if (error) {
+        // If profile doesn't exist, it might be a new social login
+        // Supabase might call a trigger to create it, so we might need a retry or just assume not allowed
+        setIsAllowed(false);
+      } else {
+        setIsAllowed(data?.is_allowed || false);
+      }
+    } catch (e) {
+      setIsAllowed(false);
+    } finally {
+      setIsLoadingAuth(false);
+    }
+  };
 
   const startResizing = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
@@ -60,14 +120,39 @@ function App() {
     return <div className="h-screen w-full bg-black text-white flex items-center justify-center">Loading...</div>;
   }
 
-  if (!hasAccess) {
-    return <LandingPage onGrantAccess={() => setHasAccess(true)} />;
+  if (!session) {
+    return <LandingPage onGrantAccess={() => { }} />;
+  }
+
+  if (isAllowed === false) {
+    return (
+      <div className="h-screen w-full bg-black text-white flex flex-col items-center justify-center p-6 text-center">
+        <div className="max-w-md space-y-6">
+          <div className="w-20 h-20 bg-purple-500/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-purple-500/20">
+            <Layout className="w-10 h-10 text-purple-400" />
+          </div>
+          <h1 className="text-3xl font-bold">Waiting for Approval</h1>
+          <p className="text-gray-400">
+            Your account has been created successfully. Our team is currently reviewing applications to ensure a high-quality experience for everyone.
+          </p>
+          <p className="text-sm text-purple-400/80">
+            We'll notify you via email once your access has been granted.
+          </p>
+          <button
+            onClick={handleLogout}
+            className="px-6 py-2 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 transition-colors text-sm"
+          >
+            Sign Out
+          </button>
+        </div>
+      </div>
+    );
   }
 
   return (
     <EditorProvider>
       <div className="flex h-screen w-full bg-black overflow-hidden font-sans text-gray-100 relative selection:bg-purple-500/30">
-        
+
         {/* Background Ambient Effects (Visible in Agent Mode) */}
         {!isEditorOpen && (
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -76,33 +161,48 @@ function App() {
           </div>
         )}
 
+        {/* Sidebar History */}
+        <Sidebar
+          activeRunId={activeRunId}
+          onSelectRun={setActiveRunId}
+          onNewProject={handleNewProject}
+          onLogout={handleLogout}
+          userEmail={session.user?.email}
+          isCollapsed={isSidebarCollapsed}
+          toggleCollapse={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+          className={`shrink-0 z-20 relative transition-all duration-300 ${isSidebarCollapsed ? 'w-[70px]' : 'w-[280px]'}`}
+        />
+
         {/* Left Panel: Chat / Agent Interface */}
-        <div 
-          style={{ width: isEditorOpen ? `${sidebarWidth}px` : '100%' }}
+        <div
+          style={{ width: isEditorOpen ? `${sidebarWidth}px` : undefined, flex: isEditorOpen ? 'none' : 1 }}
           className={`
             relative z-10 h-full flex flex-col border-r border-[#333] bg-[#09090b] shadow-2xl shrink-0
             ${isResizing ? 'transition-none' : 'transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1.0)]'}
           `}
         >
-          <ChatInterface 
-            isEditorOpen={isEditorOpen} 
-            onToggleEditor={() => setIsEditorOpen(!isEditorOpen)} 
+          <ChatInterface
+            isEditorOpen={isEditorOpen}
+            onToggleEditor={() => setIsEditorOpen(!isEditorOpen)}
+            activeRunId={activeRunId}
+            onUpdateActiveRunId={setActiveRunId}
+            resetKey={resetKey}
           />
 
           {/* Resizer Handle */}
           {isEditorOpen && (
-            <div 
+            <div
               className="absolute right-0 top-0 bottom-0 w-1.5 cursor-col-resize hover:bg-purple-500/50 transition-colors z-50 group flex justify-center"
               onMouseDown={startResizing}
             >
-               {/* Visual Indicator Line */}
-               <div className="w-[1px] h-full bg-transparent group-hover:bg-purple-500/80 transition-colors" />
+              {/* Visual Indicator Line */}
+              <div className="w-[1px] h-full bg-transparent group-hover:bg-purple-500/80 transition-colors" />
             </div>
           )}
         </div>
-        
+
         {/* Right Panel: Editor (Slides in) */}
-        <div 
+        <div
           className={`
             relative z-0 h-full min-w-0 transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] bg-black
             ${isEditorOpen ? 'flex-1 opacity-100 translate-x-0' : 'w-0 opacity-0 translate-x-[50px] overflow-hidden'}
@@ -114,14 +214,14 @@ function App() {
               overflow-x-auto allows scrolling if the viewport is too small, preventing the Property Editor from being clipped.
           */}
           <div className="w-full h-full overflow-x-auto overflow-y-hidden">
-             <div className="h-full min-w-[900px] flex flex-col"> 
-                 {/* 
+            <div className="h-full min-w-[900px] flex flex-col">
+              {/* 
                    Using min-w-0 on flex child is crucial for text-truncation and responsive flex behavior inside.
                  */}
-                 <div className="flex-1 min-w-0">
-                    <EditorPanel />
-                 </div>
-             </div>
+              <div className="flex-1 min-w-0">
+                <EditorPanel />
+              </div>
+            </div>
           </div>
         </div>
 

@@ -58,19 +58,56 @@ export interface ChatAttachment {
   mimeType?: string;
 }
 
+export interface AgentOutput {
+  agent: string;
+  type: string;
+  delta: string;
+  timestamp: number;
+  progress?: {
+    current: number;
+    total: number;
+  };
+}
+
+export interface StoryboardData {
+  scenes: ClipSpec[];
+  requiresConfirmation?: boolean;
+  runId?: string;
+}
+
+export interface VideoClipsData {
+  clips: ClipSpec[];
+  requiresConfirmation?: boolean;
+}
+
 export interface ChatMessage {
   role: 'user' | 'model';
   text?: string;
   isError?: boolean;
   attachments?: ChatAttachment[];
   // For UI state tracking during streaming
-  status?: string; 
+  status?: string;
   progress?: number;
+  options?: string[];
+  requiresConfirmation?: boolean;
+  clips?: ClipSpec[]; // Deprecated: use storyboard or videoClips
+  storyboard?: StoryboardData;
+  videoClips?: VideoClipsData;
+  agentOutputs?: AgentOutput[];
+  finalVideo?: {
+    video_url: string;
+    run_id?: string;
+  };
+  runId?: string;
+  agent?: string;
+  lastEventType?: CrewAIEventType;
+  lastDeltaChunk?: string;
+  isStitchRequest?: boolean;
 }
 
 // --- CrewAI Backend Types ---
 
-export type CrewAIEventType = 'thought' | 'info' | 'tool_result' | 'progress' | 'heartbeat' | 'error' | 'run_finished' | 'delta';
+export type CrewAIEventType = 'thought' | 'info' | 'tool_result' | 'progress' | 'heartbeat' | 'error' | 'run_finished' | 'delta' | 'storyboard_pending' | 'video_clip_completed' | 'video_clips_pending';
 
 export interface CrewAIEvent {
   type: CrewAIEventType;
@@ -98,6 +135,14 @@ export interface ClipSpec {
     in?: string;
     out?: string;
   };
+  video_url?: string;
+  // Optional fields for flexibility
+  scene_idx?: number;
+  narration?: string;
+  script?: string;
+  prompt?: string;
+  text?: string;
+  error?: string;
 }
 
 export interface PlanRequest {
@@ -122,6 +167,16 @@ export interface Job {
   status?: string;
 }
 
+export interface ConfirmRequest {
+  run_id: string;
+  confirmed: boolean;
+  feedback?: string;
+}
+
+export interface VideoConfirmRequest {
+  run_id: string;
+  confirmed: boolean;
+}
 export interface AgentRequest {
   prompt?: string;
   img?: string;
