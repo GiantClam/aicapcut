@@ -21,7 +21,7 @@ const nextConfig: NextConfig = {
           : 'http://127.0.0.1:8000/workflow/:path*',
       },
       {
-        source: '/api/:path*',
+        source: '/api/:path((?!auth).*)',
         destination: process.env.AGENT_URL
           ? `${process.env.AGENT_URL}/:path*`
           : 'http://127.0.0.1:8000/:path*',

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Sparkles, Play, Users, Wand2, Zap, CheckCircle2, ArrowRight, Lock, Mail, Twitter, Github, Menu, X, BookOpen, Clock, ArrowUpRight } from 'lucide-react';
 import { INITIAL_ASSETS } from '../constants';
 import { signIn } from 'next-auth/react';
+import { registerUser } from '../lib/actions';
 
 interface LandingPageProps {
   onGrantAccess: () => void;
@@ -49,7 +50,40 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGrantAccess }) => {
 
   const handleEmailAuth = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Email login is currently being migrated. Please use Google or GitHub login.');
+    if (!email || !password) {
+      alert('Please fill in both email and password.');
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      if (isSignUpMode) {
+        const res = await registerUser(email, password);
+        if (res?.error) {
+          alert(res.error);
+        } else {
+          alert('Registration successful! Please sign in.');
+          setIsSignUpMode(false);
+        }
+      } else {
+        const result = await signIn('credentials', {
+          email,
+          password,
+          redirect: false,
+        });
+
+        if (result?.error) {
+          alert('Invalid email or password');
+        } else {
+          // Success - Auth.js will update the session, which App.tsx listens to
+          setIsModalOpen(false);
+        }
+      }
+    } catch (error: any) {
+      alert(error.message || 'Authentication failed');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleSocialLogin = async (provider: 'google' | 'github') => {

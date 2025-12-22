@@ -12,6 +12,7 @@
     "@auth/prisma-adapter": "^2.11.1",
     "@google/genai": "^1.30.0",
     "@prisma/client": "^6.19.1",
+    "bcryptjs": "^3.0.3",
     "lucide-react": "^0.554.0",
     "next": "^16.1.0",
     "next-auth": "^5.0.0-beta.30",
@@ -19,6 +20,7 @@
     "react-dom": "^19.2.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^22.14.0",
     "@types/react": "19.2.7",
     "@vitejs/plugin-react": "^5.0.0",
