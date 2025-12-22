@@ -1,5 +1,5 @@
 {
-  "name": "AI CapCut",
-  "description": "A split-screen AI video editor where you chat to generate video timelines, scripts, and assets.",
+  "name": "AutoViralVid",
+  "description": "Auto-generate viral videos in minutes. Help you create high-engagement content for social media.",
   "requestFramePermissions": []
 }

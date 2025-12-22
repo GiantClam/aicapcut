@@ -31,7 +31,7 @@ export const INITIAL_PROJECT: VideoProject = {
         {
           id: 'text-1',
           type: ItemType.TEXT,
-          content: 'Welcome to AI CapCut',
+          content: 'Welcome to AutoViralVid',
           startTime: 0.5,
           duration: 4,
           trackId: 2,

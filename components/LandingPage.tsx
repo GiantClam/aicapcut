@@ -21,7 +21,7 @@ const BLOG_POSTS = [
   {
     id: 2,
     title: "How to Create Viral Shorts in Seconds",
-    excerpt: "A guide to using AI CapCut's scriptwriter agent to identify trending hooks and generate retention-optimized edits.",
+    excerpt: "A guide to using AutoViralVid's scriptwriter agent to identify trending hooks and generate retention-optimized edits.",
     category: "Tutorials",
     readTime: "3 min read",
     image: "https://picsum.photos/id/20/800/600",
@@ -117,7 +117,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGrantAccess }) => {
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center shadow-lg shadow-purple-500/20">
               <Sparkles className="w-4 h-4 text-white" />
             </div>
-            <span className="font-bold text-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">AI CapCut</span>
+            <span className="font-bold text-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">AutoViralVid</span>
           </div>
 
           {/* Desktop Menu */}
@@ -174,14 +174,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGrantAccess }) => {
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-tight animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
-            Multi-Agent <br />
+            Turn Ideas into <br />
             <span className="bg-gradient-to-r from-purple-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">
-              One-Click Short Video Generation
+              Viral Hits Automatically
             </span>
           </h1>
 
           <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
-            The next generation of video editing. AI CapCut uses a crew of intelligent agents to write scripts, generate assets, and edit timelines automatically.
+            The next generation of high-engagement content. AutoViralVid uses a crew of intelligent agents to write viral scripts, generate assets, and edit timelines for maximum retention.
           </p>
 
           <div className="flex items-center justify-center gap-4 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
@@ -201,7 +201,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGrantAccess }) => {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Made with AI CapCut</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Made with AutoViralVid</h2>
               <p className="text-gray-400 max-w-lg">
                 See what our autonomous agents can create in minutes. From cinematic trailers to viral social media clips.
               </p>
@@ -293,7 +293,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGrantAccess }) => {
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Latest Insights</h2>
               <p className="text-gray-400 max-w-lg">
-                Deep dives into generative media, tutorial guides, and updates from the AI CapCut engineering team.
+                Deep dives into generative media, tutorial guides, and updates from the AutoViralVid engineering team.
               </p>
             </div>
             <button className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 text-sm font-medium">
@@ -338,7 +338,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGrantAccess }) => {
         <div className="absolute inset-0 bg-gradient-to-b from-black to-[#0a0a0a]" />
         <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
           <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to transform your workflow?</h2>
-          <p className="text-xl text-gray-400 mb-10">Join the waiting list today and get 50% off your first month of AI CapCut Pro.</p>
+          <p className="text-xl text-gray-400 mb-10">Join the waiting list today and get 50% off your first month of AutoViralVid Pro.</p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <input
@@ -366,7 +366,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGrantAccess }) => {
               <div className="w-6 h-6 rounded bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center">
                 <Sparkles className="w-3 h-3 text-white" />
               </div>
-              <span className="font-bold text-lg text-white">AI CapCut</span>
+              <span className="font-bold text-lg text-white">AutoViralVid</span>
             </div>
             <p className="text-gray-500 leading-relaxed">
               Empowering creators with autonomous multi-agent video production workflows. From script to final cut in minutes.
@@ -409,7 +409,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGrantAccess }) => {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-600 text-xs">
-          <p>&copy; {new Date().getFullYear()} AI CapCut. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} AutoViralVid. All rights reserved.</p>
           <p className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> San Francisco, CA</p>
         </div>
       </footer>
@@ -439,7 +439,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGrantAccess }) => {
                 </h3>
                 <p className="text-gray-400 text-center mb-8 text-sm">
                   {isSignUpMode
-                    ? 'Join AI CapCut to start generating amazing videos.'
+                    ? 'Join AutoViralVid to start generating amazing videos.'
                     : 'Welcome back! Sign in to access your projects.'}
                 </p>
 
