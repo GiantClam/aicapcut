@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Sparkles, Play, Users, Wand2, Zap, CheckCircle2, ArrowRight, Lock, Mail, Twitter, Github, Menu, X, BookOpen, Clock, ArrowUpRight } from 'lucide-react';
 import { INITIAL_ASSETS } from '../constants';
-import { supabase } from '../lib/supabaseClient';
+import { signIn } from 'next-auth/react';
 
 interface LandingPageProps {
   onGrantAccess: () => void;
@@ -49,45 +49,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGrantAccess }) => {
 
   const handleEmailAuth = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
-    try {
-      let result;
-      if (isSignUpMode) {
-        result = await supabase.auth.signUp({
-          email,
-          password,
-        });
-      } else {
-        result = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
-      }
-
-      if (result.error) throw result.error;
-
-      if (isSignUpMode && result.data.user && result.data.session === null) {
-        alert('Verification email sent! Please check your inbox.');
-        setIsModalOpen(false);
-      }
-      // If login successful, App.tsx will handle the session change
-    } catch (error: any) {
-      alert(error.message || 'Authentication failed');
-    } finally {
-      setIsLoading(false);
-    }
+    alert('Email login is currently being migrated. Please use Google or GitHub login.');
   };
 
   const handleSocialLogin = async (provider: 'google' | 'github') => {
     setIsLoading(true);
     try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider,
-        options: {
-          redirectTo: window.location.origin,
-        },
-      });
-      if (error) throw error;
+      await signIn(provider);
     } catch (error: any) {
       alert(error.message || 'Login failed');
     } finally {

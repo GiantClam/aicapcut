@@ -6,13 +6,13 @@ import { Sidebar } from './components/Sidebar';
 import EditorPanel from './components/VideoEditor/EditorPanel';
 import LandingPage from './components/LandingPage';
 import { Layout } from 'lucide-react';
-import { supabase } from './lib/supabaseClient';
-import { Session } from '@supabase/supabase-js';
+import { useSession, signOut } from 'next-auth/react';
+import { checkUserAuthorization } from './lib/actions';
 
 function App() {
-  const [session, setSession] = useState<Session | null>(null);
+  const { data: session, status } = useSession();
   const [isAllowed, setIsAllowed] = useState<boolean | null>(null);
-  const [isLoadingAuth, setIsLoadingAuth] = useState(true);
+  const isLoadingAuth = status === 'loading';
 
   // Editor State
   const [isEditorOpen, setIsEditorOpen] = useState(false);
@@ -30,7 +30,7 @@ function App() {
   };
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
+    await signOut();
     setActiveRunId(null);
   };
 
@@ -38,51 +38,19 @@ function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   useEffect(() => {
-    // Initial session check
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      if (session) {
-        checkUserAuthorization(session.user.id);
-      } else {
-        setIsLoadingAuth(false);
-      }
-    });
-
-    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-      if (session) {
-        checkUserAuthorization(session.user.id);
-      } else {
-        setIsAllowed(null);
-        setIsLoadingAuth(false);
-      }
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
-
-  const checkUserAuthorization = async (userId: string) => {
-    try {
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('is_allowed')
-        .eq('id', userId)
-        .single();
-
-      if (error) {
-        // If profile doesn't exist, it might be a new social login
-        // Supabase might call a trigger to create it, so we might need a retry or just assume not allowed
-        setIsAllowed(false);
-      } else {
-        setIsAllowed(data?.is_allowed || false);
-      }
-    } catch (e) {
-      setIsAllowed(false);
-    } finally {
-      setIsLoadingAuth(false);
+    if (session?.user?.email) {
+      checkUserAuthorization(session.user.email).then(setIsAllowed);
+    } else if (status === 'unauthenticated') {
+      setIsAllowed(null);
     }
+  }, [session, status]);
+
+  // Superseded by server action in lib/actions.ts
+  /*
+  const checkUserAuthorization = async (userId: string) => {
+    ...
   };
+  */
 
   const startResizing = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
