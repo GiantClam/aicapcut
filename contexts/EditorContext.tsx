@@ -1,3 +1,4 @@
+"use client"
 
 import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
 import { VideoProject, TimelineItem, Track, Asset } from '../types';
@@ -27,7 +28,7 @@ export const EditorProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
   const [assets, setAssets] = useState<Asset[]>(INITIAL_ASSETS);
-  
+
   const lastTimeRef = useRef<number>(0);
   const requestRef = useRef<number | null>(null);
 
@@ -66,7 +67,7 @@ export const EditorProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   }, [isPlaying, project.duration]);
 
   const togglePlay = () => setIsPlaying(prev => !prev);
-  
+
   const seek = (time: number) => {
     setIsPlaying(false);
     setCurrentTime(Math.max(0, Math.min(time, project.duration)));
@@ -75,7 +76,7 @@ export const EditorProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const updateTrackItems = (trackId: number, newItems: TimelineItem[]) => {
     setProject(prev => ({
       ...prev,
-      tracks: prev.tracks.map(t => 
+      tracks: prev.tracks.map(t =>
         t.id === trackId ? { ...t, items: newItems } : t
       )
     }));
@@ -86,19 +87,19 @@ export const EditorProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       const newTracks = prev.tracks.map(track => {
         const itemIndex = track.items.findIndex(i => i.id === itemId);
         if (itemIndex === -1) return track;
-        
+
         const originalItem = track.items[itemIndex];
         const newItems = [...track.items];
-        
+
         // Merge top-level properties
         const updatedItem = { ...originalItem, ...updates };
 
         // Deep merge style if it exists in updates, to prevent overwriting other style props
         if (updates.style && originalItem.style) {
-             updatedItem.style = { ...originalItem.style, ...updates.style };
+          updatedItem.style = { ...originalItem.style, ...updates.style };
         } else if (updates.style) {
-            // If original had no style, just take the new one
-            updatedItem.style = updates.style;
+          // If original had no style, just take the new one
+          updatedItem.style = updates.style;
         }
 
         newItems[itemIndex] = updatedItem;
@@ -126,7 +127,7 @@ export const EditorProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   };
 
   const addAsset = (asset: Asset) => {
-      setAssets(prev => [asset, ...prev]);
+    setAssets(prev => [asset, ...prev]);
   };
 
   return (

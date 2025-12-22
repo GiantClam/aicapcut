@@ -93,6 +93,419 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.JobScalarFieldEnum = {
+  run_id: 'run_id',
+  user_id: 'user_id',
+  slogan: 'slogan',
+  cover_url: 'cover_url',
+  video_url: 'video_url',
+  share_slug: 'share_slug',
+  status: 'status',
+  provider_task_id: 'provider_task_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  storyboards: 'storyboards',
+  total_duration: 'total_duration',
+  styles: 'styles',
+  image_control: 'image_control'
+};
+
+exports.Prisma.VideoTaskScalarFieldEnum = {
+  id: 'id',
+  run_id: 'run_id',
+  clip_idx: 'clip_idx',
+  prompt: 'prompt',
+  ref_img: 'ref_img',
+  duration: 'duration',
+  status: 'status',
+  provider_task_id: 'provider_task_id',
+  video_url: 'video_url',
+  error: 'error',
+  retry_count: 'retry_count',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CrewSessionScalarFieldEnum = {
+  run_id: 'run_id',
+  session_id: 'session_id',
+  expected_clips: 'expected_clips',
+  status: 'status',
+  context: 'context',
+  result: 'result',
+  error: 'error',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.Audit_log_entriesScalarFieldEnum = {
+  instance_id: 'instance_id',
+  id: 'id',
+  payload: 'payload',
+  created_at: 'created_at',
+  ip_address: 'ip_address'
+};
+
+exports.Prisma.Flow_stateScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  auth_code: 'auth_code',
+  code_challenge_method: 'code_challenge_method',
+  code_challenge: 'code_challenge',
+  provider_type: 'provider_type',
+  provider_access_token: 'provider_access_token',
+  provider_refresh_token: 'provider_refresh_token',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  authentication_method: 'authentication_method',
+  auth_code_issued_at: 'auth_code_issued_at'
+};
+
+exports.Prisma.IdentitiesScalarFieldEnum = {
+  provider_id: 'provider_id',
+  user_id: 'user_id',
+  identity_data: 'identity_data',
+  provider: 'provider',
+  last_sign_in_at: 'last_sign_in_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  email: 'email',
+  id: 'id'
+};
+
+exports.Prisma.InstancesScalarFieldEnum = {
+  id: 'id',
+  uuid: 'uuid',
+  raw_base_config: 'raw_base_config',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.Mfa_amr_claimsScalarFieldEnum = {
+  session_id: 'session_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  authentication_method: 'authentication_method',
+  id: 'id'
+};
+
+exports.Prisma.Mfa_challengesScalarFieldEnum = {
+  id: 'id',
+  factor_id: 'factor_id',
+  created_at: 'created_at',
+  verified_at: 'verified_at',
+  ip_address: 'ip_address',
+  otp_code: 'otp_code',
+  web_authn_session_data: 'web_authn_session_data'
+};
+
+exports.Prisma.Mfa_factorsScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  friendly_name: 'friendly_name',
+  factor_type: 'factor_type',
+  status: 'status',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  secret: 'secret',
+  phone: 'phone',
+  last_challenged_at: 'last_challenged_at',
+  web_authn_credential: 'web_authn_credential',
+  web_authn_aaguid: 'web_authn_aaguid',
+  last_webauthn_challenge_data: 'last_webauthn_challenge_data'
+};
+
+exports.Prisma.Oauth_authorizationsScalarFieldEnum = {
+  id: 'id',
+  authorization_id: 'authorization_id',
+  client_id: 'client_id',
+  user_id: 'user_id',
+  redirect_uri: 'redirect_uri',
+  scope: 'scope',
+  state: 'state',
+  resource: 'resource',
+  code_challenge: 'code_challenge',
+  code_challenge_method: 'code_challenge_method',
+  response_type: 'response_type',
+  status: 'status',
+  authorization_code: 'authorization_code',
+  created_at: 'created_at',
+  expires_at: 'expires_at',
+  approved_at: 'approved_at',
+  nonce: 'nonce'
+};
+
+exports.Prisma.Oauth_client_statesScalarFieldEnum = {
+  id: 'id',
+  provider_type: 'provider_type',
+  code_verifier: 'code_verifier',
+  created_at: 'created_at'
+};
+
+exports.Prisma.Oauth_clientsScalarFieldEnum = {
+  id: 'id',
+  client_secret_hash: 'client_secret_hash',
+  registration_type: 'registration_type',
+  redirect_uris: 'redirect_uris',
+  grant_types: 'grant_types',
+  client_name: 'client_name',
+  client_uri: 'client_uri',
+  logo_uri: 'logo_uri',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at',
+  client_type: 'client_type'
+};
+
+exports.Prisma.Oauth_consentsScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  client_id: 'client_id',
+  scopes: 'scopes',
+  granted_at: 'granted_at',
+  revoked_at: 'revoked_at'
+};
+
+exports.Prisma.One_time_tokensScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  token_type: 'token_type',
+  token_hash: 'token_hash',
+  relates_to: 'relates_to',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.Refresh_tokensScalarFieldEnum = {
+  instance_id: 'instance_id',
+  id: 'id',
+  token: 'token',
+  user_id: 'user_id',
+  revoked: 'revoked',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  parent: 'parent',
+  session_id: 'session_id'
+};
+
+exports.Prisma.Saml_providersScalarFieldEnum = {
+  id: 'id',
+  sso_provider_id: 'sso_provider_id',
+  entity_id: 'entity_id',
+  metadata_xml: 'metadata_xml',
+  metadata_url: 'metadata_url',
+  attribute_mapping: 'attribute_mapping',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  name_id_format: 'name_id_format'
+};
+
+exports.Prisma.Saml_relay_statesScalarFieldEnum = {
+  id: 'id',
+  sso_provider_id: 'sso_provider_id',
+  request_id: 'request_id',
+  for_email: 'for_email',
+  redirect_to: 'redirect_to',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  flow_state_id: 'flow_state_id'
+};
+
+exports.Prisma.Schema_migrationsScalarFieldEnum = {
+  version: 'version'
+};
+
+exports.Prisma.SessionsScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  factor_id: 'factor_id',
+  aal: 'aal',
+  not_after: 'not_after',
+  refreshed_at: 'refreshed_at',
+  user_agent: 'user_agent',
+  ip: 'ip',
+  tag: 'tag',
+  oauth_client_id: 'oauth_client_id',
+  refresh_token_hmac_key: 'refresh_token_hmac_key',
+  refresh_token_counter: 'refresh_token_counter',
+  scopes: 'scopes'
+};
+
+exports.Prisma.Sso_domainsScalarFieldEnum = {
+  id: 'id',
+  sso_provider_id: 'sso_provider_id',
+  domain: 'domain',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.Sso_providersScalarFieldEnum = {
+  id: 'id',
+  resource_id: 'resource_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  disabled: 'disabled'
+};
+
+exports.Prisma.UsersScalarFieldEnum = {
+  instance_id: 'instance_id',
+  id: 'id',
+  aud: 'aud',
+  role: 'role',
+  email: 'email',
+  encrypted_password: 'encrypted_password',
+  email_confirmed_at: 'email_confirmed_at',
+  invited_at: 'invited_at',
+  confirmation_token: 'confirmation_token',
+  confirmation_sent_at: 'confirmation_sent_at',
+  recovery_token: 'recovery_token',
+  recovery_sent_at: 'recovery_sent_at',
+  email_change_token_new: 'email_change_token_new',
+  email_change: 'email_change',
+  email_change_sent_at: 'email_change_sent_at',
+  last_sign_in_at: 'last_sign_in_at',
+  raw_app_meta_data: 'raw_app_meta_data',
+  raw_user_meta_data: 'raw_user_meta_data',
+  is_super_admin: 'is_super_admin',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  phone: 'phone',
+  phone_confirmed_at: 'phone_confirmed_at',
+  phone_change: 'phone_change',
+  phone_change_token: 'phone_change_token',
+  phone_change_sent_at: 'phone_change_sent_at',
+  confirmed_at: 'confirmed_at',
+  email_change_token_current: 'email_change_token_current',
+  email_change_confirm_status: 'email_change_confirm_status',
+  banned_until: 'banned_until',
+  reauthentication_token: 'reauthentication_token',
+  reauthentication_sent_at: 'reauthentication_sent_at',
+  is_sso_user: 'is_sso_user',
+  deleted_at: 'deleted_at',
+  is_anonymous: 'is_anonymous'
+};
+
+exports.Prisma.Claude_skillsScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  path: 'path',
+  download_url: 'download_url',
+  github_url: 'github_url',
+  sync_at: 'sync_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  description: 'description',
+  skill_md: 'skill_md'
+};
+
+exports.Prisma.Community_serversScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  endpoint: 'endpoint',
+  category: 'category',
+  features: 'features',
+  compatibility: 'compatibility',
+  install_command: 'install_command',
+  documentation_url: 'documentation_url',
+  submitter_email: 'submitter_email',
+  submitter_name: 'submitter_name',
+  status: 'status',
+  submitted_at: 'submitted_at',
+  approved_at: 'approved_at',
+  rejected_at: 'rejected_at',
+  rejection_reason: 'rejection_reason',
+  approved_by: 'approved_by',
+  rejected_by: 'rejected_by',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.Featured_projectsScalarFieldEnum = {
+  id: 'id',
+  project_id: 'project_id',
+  featured_at: 'featured_at',
+  featured_until: 'featured_until',
+  reason: 'reason',
+  featured_by: 'featured_by',
+  unfeatured_at: 'unfeatured_at',
+  unfeatured_by: 'unfeatured_by',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.Github_projectsScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  full_name: 'full_name',
+  owner: 'owner',
+  owner_avatar: 'owner_avatar',
+  url: 'url',
+  description: 'description',
+  stars: 'stars',
+  forks: 'forks',
+  language: 'language',
+  topics: 'topics',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  github_updated_at: 'github_updated_at',
+  relevance: 'relevance',
+  relevance_score: 'relevance_score',
+  image_url: 'image_url',
+  readme_content: 'readme_content',
+  sync_at: 'sync_at',
+  gemini_analyzed_at: 'gemini_analyzed_at',
+  gemini_summary: 'gemini_summary',
+  gemini_key_features: 'gemini_key_features',
+  gemini_use_cases: 'gemini_use_cases',
+  gemini_analysis_version: 'gemini_analysis_version'
+};
+
+exports.Prisma.Mcp_clientsScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  logo_url: 'logo_url',
+  homepage: 'homepage',
+  support_level: 'support_level',
+  platforms: 'platforms',
+  features: 'features',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.ProfilesScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  is_allowed: 'is_allowed'
+};
+
+exports.Prisma.Prompts_libraryScalarFieldEnum = {
+  id: 'id',
+  category: 'category',
+  title: 'title',
+  prompt: 'prompt',
+  cover_url: 'cover_url',
+  created_at: 'created_at'
+};
+
+exports.Prisma.Remote_mcp_serversScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  logo_url: 'logo_url',
+  homepage: 'homepage',
+  connect_url: 'connect_url',
+  auth_type: 'auth_type',
+  category: 'category',
+  tags: 'tags',
+  status: 'status',
+  updated_at: 'updated_at'
+};
+
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -153,44 +566,6 @@ exports.Prisma.ProfileScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.JobScalarFieldEnum = {
-  run_id: 'run_id',
-  user_id: 'user_id',
-  slogan: 'slogan',
-  cover_url: 'cover_url',
-  video_url: 'video_url',
-  share_slug: 'share_slug',
-  status: 'status',
-  provider_task_id: 'provider_task_id',
-  storyboards: 'storyboards',
-  total_duration: 'total_duration',
-  styles: 'styles',
-  image_control: 'image_control',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.VideoTaskScalarFieldEnum = {
-  id: 'id',
-  run_id: 'run_id',
-  clip_idx: 'clip_idx',
-  status: 'status',
-  video_url: 'video_url',
-  error: 'error',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.CrewSessionScalarFieldEnum = {
-  run_id: 'run_id',
-  status: 'status',
-  error: 'error',
-  expected_clips: 'expected_clips',
-  context: 'context',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -201,14 +576,13 @@ exports.Prisma.NullableJsonNullValueInput = {
   JsonNull: Prisma.JsonNull
 };
 
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
-};
-
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
 };
 
 exports.Prisma.JsonNullValueFilter = {
@@ -217,17 +591,100 @@ exports.Prisma.JsonNullValueFilter = {
   AnyNull: Prisma.AnyNull
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+exports.aal_level = exports.$Enums.aal_level = {
+  aal1: 'aal1',
+  aal2: 'aal2',
+  aal3: 'aal3'
+};
+
+exports.code_challenge_method = exports.$Enums.code_challenge_method = {
+  s256: 's256',
+  plain: 'plain'
+};
+
+exports.factor_status = exports.$Enums.factor_status = {
+  unverified: 'unverified',
+  verified: 'verified'
+};
+
+exports.factor_type = exports.$Enums.factor_type = {
+  totp: 'totp',
+  webauthn: 'webauthn',
+  phone: 'phone'
+};
+
+exports.oauth_authorization_status = exports.$Enums.oauth_authorization_status = {
+  pending: 'pending',
+  approved: 'approved',
+  denied: 'denied',
+  expired: 'expired'
+};
+
+exports.oauth_client_type = exports.$Enums.oauth_client_type = {
+  public: 'public',
+  confidential: 'confidential'
+};
+
+exports.oauth_registration_type = exports.$Enums.oauth_registration_type = {
+  dynamic: 'dynamic',
+  manual: 'manual'
+};
+
+exports.oauth_response_type = exports.$Enums.oauth_response_type = {
+  code: 'code'
+};
+
+exports.one_time_token_type = exports.$Enums.one_time_token_type = {
+  confirmation_token: 'confirmation_token',
+  reauthentication_token: 'reauthentication_token',
+  recovery_token: 'recovery_token',
+  email_change_token_new: 'email_change_token_new',
+  email_change_token_current: 'email_change_token_current',
+  phone_change_token: 'phone_change_token'
+};
 
 exports.Prisma.ModelName = {
+  Job: 'Job',
+  VideoTask: 'VideoTask',
+  CrewSession: 'CrewSession',
+  audit_log_entries: 'audit_log_entries',
+  flow_state: 'flow_state',
+  identities: 'identities',
+  instances: 'instances',
+  mfa_amr_claims: 'mfa_amr_claims',
+  mfa_challenges: 'mfa_challenges',
+  mfa_factors: 'mfa_factors',
+  oauth_authorizations: 'oauth_authorizations',
+  oauth_client_states: 'oauth_client_states',
+  oauth_clients: 'oauth_clients',
+  oauth_consents: 'oauth_consents',
+  one_time_tokens: 'one_time_tokens',
+  refresh_tokens: 'refresh_tokens',
+  saml_providers: 'saml_providers',
+  saml_relay_states: 'saml_relay_states',
+  schema_migrations: 'schema_migrations',
+  sessions: 'sessions',
+  sso_domains: 'sso_domains',
+  sso_providers: 'sso_providers',
+  users: 'users',
+  claude_skills: 'claude_skills',
+  community_servers: 'community_servers',
+  featured_projects: 'featured_projects',
+  github_projects: 'github_projects',
+  mcp_clients: 'mcp_clients',
+  profiles: 'profiles',
+  prompts_library: 'prompts_library',
+  remote_mcp_servers: 'remote_mcp_servers',
   User: 'User',
   Account: 'Account',
   Session: 'Session',
   VerificationToken: 'VerificationToken',
   Authenticator: 'Authenticator',
-  Profile: 'Profile',
-  Job: 'Job',
-  VideoTask: 'VideoTask',
-  CrewSession: 'CrewSession'
+  Profile: 'Profile'
 };
 /**
  * Create the Client
@@ -253,7 +710,9 @@ const config = {
         "native": true
       }
     ],
-    "previewFeatures": [],
+    "previewFeatures": [
+      "multiSchema"
+    ],
     "sourceFilePath": "D:\\github\\aicapcut\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
@@ -268,7 +727,6 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -277,13 +735,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated-client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id            String          @id @default(cuid())\n  name          String?\n  email         String          @unique\n  emailVerified DateTime?\n  image         String?\n  password      String?\n  accounts      Account[]\n  sessions      Session[]\n  // Optional: for WebAuthn support\n  Authenticator Authenticator[]\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  // Profile relation\n  profile Profile?\n}\n\nmodel Account {\n  userId            String\n  type              String\n  provider          String\n  providerAccountId String\n  refresh_token     String?\n  access_token      String?\n  expires_at        Int?\n  token_type        String?\n  scope             String?\n  id_token          String?\n  session_state     String?\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@id([provider, providerAccountId])\n}\n\nmodel Session {\n  sessionToken String   @unique\n  userId       String\n  expires      DateTime\n  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel VerificationToken {\n  identifier String\n  token      String\n  expires    DateTime\n\n  @@id([identifier, token])\n}\n\n// Optional: for WebAuthn support\nmodel Authenticator {\n  credentialID         String  @unique\n  userId               String\n  providerAccountId    String\n  credentialPublicKey  String\n  counter              Int\n  credentialDeviceType String\n  credentialBackedUp   Boolean\n  transports           String?\n\n  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@id([userId, credentialID])\n}\n\nmodel Profile {\n  id         String   @id\n  userId     String   @unique\n  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)\n  is_allowed Boolean  @default(false)\n  createdAt  DateTime @default(now())\n  updatedAt  DateTime @updatedAt\n}\n\nmodel Job {\n  run_id           String   @id\n  user_id          String?\n  slogan           String?\n  cover_url        String?\n  video_url        String?\n  share_slug       String?  @unique\n  status           String   @default(\"running\")\n  provider_task_id String?\n  storyboards      Json?\n  total_duration   Float?\n  styles           String[]\n  image_control    Boolean  @default(false)\n  created_at       DateTime @default(now())\n  updated_at       DateTime @default(now()) @updatedAt\n\n  @@map(\"jobs\")\n}\n\nmodel VideoTask {\n  id        Int      @id @default(autoincrement())\n  run_id    String\n  clip_idx  Int\n  status    String\n  video_url String?\n  error     String?\n  createdAt DateTime @default(now()) @map(\"created_at\")\n  updatedAt DateTime @default(now()) @updatedAt @map(\"updated_at\")\n\n  @@map(\"video_tasks\")\n}\n\nmodel CrewSession {\n  run_id         String   @id\n  status         String\n  error          String?\n  expected_clips Int?\n  context        Json?\n  createdAt      DateTime @default(now()) @map(\"created_at\")\n  updatedAt      DateTime @default(now()) @updatedAt @map(\"updated_at\")\n\n  @@map(\"crew_sessions\")\n}\n",
-  "inlineSchemaHash": "12f4c17ffa3e008050eda3d8c98a6f8bfe817d472b3873e670bb0a947c711d23",
+  "inlineSchema": "generator client {\n  provider        = \"prisma-client-js\"\n  output          = \"./generated-client\"\n  previewFeatures = [\"multiSchema\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n  schemas  = [\"auth\", \"public\"]\n}\n\nmodel Job {\n  run_id           String    @id\n  user_id          String?   @db.Uuid\n  slogan           String?\n  cover_url        String?\n  video_url        String?\n  share_slug       String?   @unique\n  status           String?   @default(\"running\")\n  provider_task_id String?\n  created_at       DateTime? @default(now()) @db.Timestamptz(6)\n  updated_at       DateTime? @default(now()) @updatedAt @db.Timestamptz(6)\n  storyboards      Json?\n  total_duration   Float?    @db.Real\n  styles           String[]\n  image_control    Boolean?  @default(false)\n\n  @@index([created_at(sort: Desc)], map: \"idx_jobs_created_at\")\n  @@index([provider_task_id], map: \"idx_jobs_provider_task_id\")\n  @@index([share_slug], map: \"idx_jobs_share_slug\")\n  @@index([status], map: \"idx_jobs_status\")\n  @@index([storyboards], map: \"idx_jobs_storyboards\", type: Gin)\n  @@index([user_id], map: \"idx_jobs_user_id\")\n  @@map(\"jobs\")\n  @@schema(\"public\")\n}\n\nmodel VideoTask {\n  id               String    @id @default(dbgenerated(\"gen_random_uuid()\")) @db.Uuid\n  run_id           String\n  clip_idx         Int\n  prompt           String\n  ref_img          String?\n  duration         Int?      @default(10)\n  status           String?   @default(\"pending\")\n  provider_task_id String?\n  video_url        String?\n  error            String?\n  retry_count      Int?      @default(0)\n  createdAt        DateTime? @default(now()) @map(\"created_at\") @db.Timestamptz(6)\n  updatedAt        DateTime? @default(now()) @updatedAt @map(\"updated_at\") @db.Timestamptz(6)\n\n  @@index([createdAt], map: \"idx_video_tasks_created_at\")\n  @@index([provider_task_id], map: \"idx_video_tasks_provider_task_id\")\n  @@index([run_id], map: \"idx_video_tasks_run_id\")\n  @@index([status], map: \"idx_video_tasks_status\")\n  @@map(\"video_tasks\")\n  @@schema(\"public\")\n}\n\nmodel CrewSession {\n  run_id         String    @id\n  session_id     String\n  expected_clips Int\n  status         String?   @default(\"waiting_videos\")\n  context        Json?\n  result         String?\n  error          String?\n  createdAt      DateTime? @default(now()) @map(\"created_at\") @db.Timestamptz(6)\n  updatedAt      DateTime? @default(now()) @updatedAt @map(\"updated_at\") @db.Timestamptz(6)\n\n  @@index([createdAt], map: \"idx_crew_sessions_created_at\")\n  @@index([session_id], map: \"idx_crew_sessions_session_id\")\n  @@index([status], map: \"idx_crew_sessions_status\")\n  @@map(\"crew_sessions\")\n  @@schema(\"public\")\n}\n\n/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments\n/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.\nmodel audit_log_entries {\n  instance_id String?   @db.Uuid\n  id          String    @id @db.Uuid\n  payload     Json?     @db.Json\n  created_at  DateTime? @db.Timestamptz(6)\n  ip_address  String    @default(\"\") @db.VarChar(64)\n\n  @@index([instance_id], map: \"audit_logs_instance_id_idx\")\n  @@schema(\"auth\")\n}\n\n/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments\n/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.\nmodel flow_state {\n  id                     String                @id @db.Uuid\n  user_id                String?               @db.Uuid\n  auth_code              String\n  code_challenge_method  code_challenge_method\n  code_challenge         String\n  provider_type          String\n  provider_access_token  String?\n  provider_refresh_token String?\n  created_at             DateTime?             @db.Timestamptz(6)\n  updated_at             DateTime?             @db.Timestamptz(6)\n  authentication_method  String\n  auth_code_issued_at    DateTime?             @db.Timestamptz(6)\n  saml_relay_states      saml_relay_states[]\n\n  @@index([created_at(sort: Desc)])\n  @@index([auth_code], map: \"idx_auth_code\")\n  @@index([user_id, authentication_method], map: \"idx_user_id_auth_method\")\n  @@schema(\"auth\")\n}\n\n/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments\n/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.\nmodel identities {\n  provider_id     String\n  user_id         String    @db.Uuid\n  identity_data   Json\n  provider        String\n  last_sign_in_at DateTime? @db.Timestamptz(6)\n  created_at      DateTime? @db.Timestamptz(6)\n  updated_at      DateTime? @db.Timestamptz(6)\n  email           String?   @default(dbgenerated(\"lower((identity_data ->> 'email'::text))\"))\n  id              String    @id @default(dbgenerated(\"gen_random_uuid()\")) @db.Uuid\n  users           users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)\n\n  @@unique([provider_id, provider], map: \"identities_provider_id_provider_unique\")\n  @@index([email])\n  @@index([user_id])\n  @@schema(\"auth\")\n}\n\n/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments\n/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.\nmodel instances {\n  id              String    @id @db.Uuid\n  uuid            String?   @db.Uuid\n  raw_base_config String?\n  created_at      DateTime? @db.Timestamptz(6)\n  updated_at      DateTime? @db.Timestamptz(6)\n\n  @@schema(\"auth\")\n}\n\n/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments\n/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.\nmodel mfa_amr_claims {\n  session_id            String   @db.Uuid\n  created_at            DateTime @db.Timestamptz(6)\n  updated_at            DateTime @db.Timestamptz(6)\n  authentication_method String\n  id                    String   @id(map: \"amr_id_pk\") @db.Uuid\n  sessions              sessions @relation(fields: [session_id], references: [id], onDelete: Cascade, onUpdate: NoAction)\n\n  @@unique([session_id, authentication_method], map: \"mfa_amr_claims_session_id_authentication_method_pkey\")\n  @@schema(\"auth\")\n}\n\n/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments\n/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.\nmodel mfa_challenges {\n  id                     String      @id @db.Uuid\n  factor_id              String      @db.Uuid\n  created_at             DateTime    @db.Timestamptz(6)\n  verified_at            DateTime?   @db.Timestamptz(6)\n  ip_address             String      @db.Inet\n  otp_code               String?\n  web_authn_session_data Json?\n  mfa_factors            mfa_factors @relation(fields: [factor_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: \"mfa_challenges_auth_factor_id_fkey\")\n\n  @@index([created_at(sort: Desc)], map: \"mfa_challenge_created_at_idx\")\n  @@schema(\"auth\")\n}\n\n/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments\n/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.\nmodel mfa_factors {\n  id                           String           @id @db.Uuid\n  user_id                      String           @db.Uuid\n  friendly_name                String?\n  factor_type                  factor_type\n  status                       factor_status\n  created_at                   DateTime         @db.Timestamptz(6)\n  updated_at                   DateTime         @db.Timestamptz(6)\n  secret                       String?\n  phone                        String?\n  last_challenged_at           DateTime?        @unique @db.Timestamptz(6)\n  web_authn_credential         Json?\n  web_authn_aaguid             String?          @db.Uuid\n  last_webauthn_challenge_data Json?\n  mfa_challenges               mfa_challenges[]\n  users                        users            @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)\n\n  @@unique([user_id, phone], map: \"unique_phone_factor_per_user\")\n  @@index([user_id, created_at], map: \"factor_id_created_at_idx\")\n  @@index([user_id])\n  @@schema(\"auth\")\n}\n\n/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.\nmodel oauth_authorizations {\n  id                    String                     @id @db.Uuid\n  authorization_id      String                     @unique\n  client_id             String                     @db.Uuid\n  user_id               String?                    @db.Uuid\n  redirect_uri          String\n  scope                 String\n  state                 String?\n  resource              String?\n  code_challenge        String?\n  code_challenge_method code_challenge_method?\n  response_type         oauth_response_type        @default(code)\n  status                oauth_authorization_status @default(pending)\n  authorization_code    String?                    @unique\n  created_at            DateTime                   @default(now()) @db.Timestamptz(6)\n  expires_at            DateTime                   @default(dbgenerated(\"(now() + '00:03:00'::interval)\")) @db.Timestamptz(6)\n  approved_at           DateTime?                  @db.Timestamptz(6)\n  nonce                 String?\n  oauth_clients         oauth_clients              @relation(fields: [client_id], references: [id], onDelete: Cascade, onUpdate: NoAction)\n  users                 users?                     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)\n\n  @@schema(\"auth\")\n}\n\n/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments\nmodel oauth_client_states {\n  id            String   @id @db.Uuid\n  provider_type String\n  code_verifier String?\n  created_at    DateTime @db.Timestamptz(6)\n\n  @@index([created_at], map: \"idx_oauth_client_states_created_at\")\n  @@schema(\"auth\")\n}\n\n/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.\nmodel oauth_clients {\n  id                   String                  @id @db.Uuid\n  client_secret_hash   String?\n  registration_type    oauth_registration_type\n  redirect_uris        String\n  grant_types          String\n  client_name          String?\n  client_uri           String?\n  logo_uri             String?\n  created_at           DateTime                @default(now()) @db.Timestamptz(6)\n  updated_at           DateTime                @default(now()) @db.Timestamptz(6)\n  deleted_at           DateTime?               @db.Timestamptz(6)\n  client_type          oauth_client_type       @default(confidential)\n  oauth_authorizations oauth_authorizations[]\n  oauth_consents       oauth_consents[]\n  sessions             sessions[]\n\n  @@index([deleted_at])\n  @@schema(\"auth\")\n}\n\n/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.\nmodel oauth_consents {\n  id            String        @id @db.Uuid\n  user_id       String        @db.Uuid\n  client_id     String        @db.Uuid\n  scopes        String\n  granted_at    DateTime      @default(now()) @db.Timestamptz(6)\n  revoked_at    DateTime?     @db.Timestamptz(6)\n  oauth_clients oauth_clients @relation(fields: [client_id], references: [id], onDelete: Cascade, onUpdate: NoAction)\n  users         users         @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)\n\n  @@unique([user_id, client_id], map: \"oauth_consents_user_client_unique\")\n  @@index([user_id, granted_at(sort: Desc)], map: \"oauth_consents_user_order_idx\")\n  @@schema(\"auth\")\n}\n\n/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.\n/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.\nmodel one_time_tokens {\n  id         String              @id @db.Uuid\n  user_id    String              @db.Uuid\n  token_type one_time_token_type\n  token_hash String\n  relates_to String\n  created_at DateTime            @default(now()) @db.Timestamp(6)\n  updated_at DateTime            @default(now()) @db.Timestamp(6)\n  users      users               @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)\n\n  @@unique([user_id, token_type])\n  @@index([relates_to], map: \"one_time_tokens_relates_to_hash_idx\", type: Hash)\n  @@index([token_hash], map: \"one_time_tokens_token_hash_hash_idx\", type: Hash)\n  @@schema(\"auth\")\n}\n\n/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments\n/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.\nmodel refresh_tokens {\n  instance_id String?   @db.Uuid\n  id          BigInt    @id @default(autoincrement())\n  token       String?   @unique(map: \"refresh_tokens_token_unique\") @db.VarChar(255)\n  user_id     String?   @db.VarChar(255)\n  revoked     Boolean?\n  created_at  DateTime? @db.Timestamptz(6)\n  updated_at  DateTime? @db.Timestamptz(6)\n  parent      String?   @db.VarChar(255)\n  session_id  String?   @db.Uuid\n  sessions    sessions? @relation(fields: [session_id], references: [id], onDelete: Cascade, onUpdate: NoAction)\n\n  @@index([instance_id])\n  @@index([instance_id, user_id])\n  @@index([parent])\n  @@index([session_id, revoked])\n  @@index([updated_at(sort: Desc)])\n  @@schema(\"auth\")\n}\n\n/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.\n/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments\n/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.\nmodel saml_providers {\n  id                String        @id @db.Uuid\n  sso_provider_id   String        @db.Uuid\n  entity_id         String        @unique\n  metadata_xml      String\n  metadata_url      String?\n  attribute_mapping Json?\n  created_at        DateTime?     @db.Timestamptz(6)\n  updated_at        DateTime?     @db.Timestamptz(6)\n  name_id_format    String?\n  sso_providers     sso_providers @relation(fields: [sso_provider_id], references: [id], onDelete: Cascade, onUpdate: NoAction)\n\n  @@index([sso_provider_id])\n  @@schema(\"auth\")\n}\n\n/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.\n/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments\n/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.\nmodel saml_relay_states {\n  id              String        @id @db.Uuid\n  sso_provider_id String        @db.Uuid\n  request_id      String\n  for_email       String?\n  redirect_to     String?\n  created_at      DateTime?     @db.Timestamptz(6)\n  updated_at      DateTime?     @db.Timestamptz(6)\n  flow_state_id   String?       @db.Uuid\n  flow_state      flow_state?   @relation(fields: [flow_state_id], references: [id], onDelete: Cascade, onUpdate: NoAction)\n  sso_providers   sso_providers @relation(fields: [sso_provider_id], references: [id], onDelete: Cascade, onUpdate: NoAction)\n\n  @@index([created_at(sort: Desc)])\n  @@index([for_email])\n  @@index([sso_provider_id])\n  @@schema(\"auth\")\n}\n\n/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments\n/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.\nmodel schema_migrations {\n  version String @id @db.VarChar(255)\n\n  @@schema(\"auth\")\n}\n\n/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.\n/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments\n/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.\nmodel sessions {\n  id                     String           @id @db.Uuid\n  user_id                String           @db.Uuid\n  created_at             DateTime?        @db.Timestamptz(6)\n  updated_at             DateTime?        @db.Timestamptz(6)\n  factor_id              String?          @db.Uuid\n  aal                    aal_level?\n  not_after              DateTime?        @db.Timestamptz(6)\n  refreshed_at           DateTime?        @db.Timestamp(6)\n  user_agent             String?\n  ip                     String?          @db.Inet\n  tag                    String?\n  oauth_client_id        String?          @db.Uuid\n  refresh_token_hmac_key String?\n  refresh_token_counter  BigInt?\n  scopes                 String?\n  mfa_amr_claims         mfa_amr_claims[]\n  refresh_tokens         refresh_tokens[]\n  oauth_clients          oauth_clients?   @relation(fields: [oauth_client_id], references: [id], onDelete: Cascade, onUpdate: NoAction)\n  users                  users            @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)\n\n  @@index([not_after(sort: Desc)])\n  @@index([oauth_client_id])\n  @@index([user_id])\n  @@index([user_id, created_at], map: \"user_id_created_at_idx\")\n  @@schema(\"auth\")\n}\n\n/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.\n/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments\n/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.\n/// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.\nmodel sso_domains {\n  id              String        @id @db.Uuid\n  sso_provider_id String        @db.Uuid\n  domain          String\n  created_at      DateTime?     @db.Timestamptz(6)\n  updated_at      DateTime?     @db.Timestamptz(6)\n  sso_providers   sso_providers @relation(fields: [sso_provider_id], references: [id], onDelete: Cascade, onUpdate: NoAction)\n\n  @@index([sso_provider_id])\n  @@schema(\"auth\")\n}\n\n/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.\n/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments\n/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.\n/// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.\nmodel sso_providers {\n  id                String              @id @db.Uuid\n  resource_id       String?\n  created_at        DateTime?           @db.Timestamptz(6)\n  updated_at        DateTime?           @db.Timestamptz(6)\n  disabled          Boolean?\n  saml_providers    saml_providers[]\n  saml_relay_states saml_relay_states[]\n  sso_domains       sso_domains[]\n\n  @@index([resource_id], map: \"sso_providers_resource_id_pattern_idx\")\n  @@schema(\"auth\")\n}\n\n/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.\n/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments\n/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.\n/// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.\nmodel users {\n  instance_id                 String?                @db.Uuid\n  id                          String                 @id @db.Uuid\n  aud                         String?                @db.VarChar(255)\n  role                        String?                @db.VarChar(255)\n  email                       String?                @db.VarChar(255)\n  encrypted_password          String?                @db.VarChar(255)\n  email_confirmed_at          DateTime?              @db.Timestamptz(6)\n  invited_at                  DateTime?              @db.Timestamptz(6)\n  confirmation_token          String?                @db.VarChar(255)\n  confirmation_sent_at        DateTime?              @db.Timestamptz(6)\n  recovery_token              String?                @db.VarChar(255)\n  recovery_sent_at            DateTime?              @db.Timestamptz(6)\n  email_change_token_new      String?                @db.VarChar(255)\n  email_change                String?                @db.VarChar(255)\n  email_change_sent_at        DateTime?              @db.Timestamptz(6)\n  last_sign_in_at             DateTime?              @db.Timestamptz(6)\n  raw_app_meta_data           Json?\n  raw_user_meta_data          Json?\n  is_super_admin              Boolean?\n  created_at                  DateTime?              @db.Timestamptz(6)\n  updated_at                  DateTime?              @db.Timestamptz(6)\n  phone                       String?                @unique\n  phone_confirmed_at          DateTime?              @db.Timestamptz(6)\n  phone_change                String?                @default(\"\")\n  phone_change_token          String?                @default(\"\") @db.VarChar(255)\n  phone_change_sent_at        DateTime?              @db.Timestamptz(6)\n  confirmed_at                DateTime?              @default(dbgenerated(\"LEAST(email_confirmed_at, phone_confirmed_at)\")) @db.Timestamptz(6)\n  email_change_token_current  String?                @default(\"\") @db.VarChar(255)\n  email_change_confirm_status Int?                   @default(0) @db.SmallInt\n  banned_until                DateTime?              @db.Timestamptz(6)\n  reauthentication_token      String?                @default(\"\") @db.VarChar(255)\n  reauthentication_sent_at    DateTime?              @db.Timestamptz(6)\n  is_sso_user                 Boolean                @default(false)\n  deleted_at                  DateTime?              @db.Timestamptz(6)\n  is_anonymous                Boolean                @default(false)\n  identities                  identities[]\n  mfa_factors                 mfa_factors[]\n  oauth_authorizations        oauth_authorizations[]\n  oauth_consents              oauth_consents[]\n  one_time_tokens             one_time_tokens[]\n  sessions                    sessions[]\n  profiles                    profiles?\n\n  @@index([instance_id])\n  @@index([is_anonymous])\n  @@schema(\"auth\")\n}\n\n/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments\n/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.\n/// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.\nmodel claude_skills {\n  id           String    @id\n  name         String    @unique\n  path         String\n  download_url String\n  github_url   String\n  sync_at      DateTime? @default(now()) @db.Timestamptz(6)\n  created_at   DateTime? @default(now()) @db.Timestamptz(6)\n  updated_at   DateTime? @default(now()) @db.Timestamptz(6)\n  description  String?\n  skill_md     String?\n\n  @@index([name], map: \"idx_claude_skills_name\")\n  @@index([sync_at(sort: Desc)], map: \"idx_claude_skills_sync_at\")\n  @@schema(\"public\")\n}\n\n/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.\nmodel community_servers {\n  id                String    @id @default(dbgenerated(\"gen_random_uuid()\")) @db.Uuid\n  name              String\n  description       String\n  endpoint          String\n  category          String\n  features          String[]  @default([])\n  compatibility     String[]  @default([])\n  install_command   String?\n  documentation_url String?\n  submitter_email   String?\n  submitter_name    String?\n  status            String?   @default(\"pending\")\n  submitted_at      DateTime? @default(now()) @db.Timestamptz(6)\n  approved_at       DateTime? @db.Timestamptz(6)\n  rejected_at       DateTime? @db.Timestamptz(6)\n  rejection_reason  String?\n  approved_by       String?\n  rejected_by       String?\n  created_at        DateTime? @default(now()) @db.Timestamptz(6)\n  updated_at        DateTime? @default(now()) @db.Timestamptz(6)\n\n  @@schema(\"public\")\n}\n\nmodel featured_projects {\n  id              String          @id @default(dbgenerated(\"gen_random_uuid()\")) @db.Uuid\n  project_id      String\n  featured_at     DateTime?       @default(now()) @db.Timestamptz(6)\n  featured_until  DateTime        @db.Timestamptz(6)\n  reason          String?\n  featured_by     String\n  unfeatured_at   DateTime?       @db.Timestamptz(6)\n  unfeatured_by   String?\n  created_at      DateTime?       @default(now()) @db.Timestamptz(6)\n  updated_at      DateTime?       @default(now()) @db.Timestamptz(6)\n  github_projects github_projects @relation(fields: [project_id], references: [id], onDelete: NoAction, onUpdate: NoAction)\n\n  @@schema(\"public\")\n}\n\n/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.\n/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments\n/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.\nmodel github_projects {\n  id                      String              @id\n  name                    String\n  full_name               String              @unique\n  owner                   String\n  owner_avatar            String\n  url                     String              @unique\n  description             String?\n  stars                   Int?                @default(0)\n  forks                   Int?                @default(0)\n  language                String?\n  topics                  String[]            @default([])\n  created_at              DateTime            @db.Timestamptz(6)\n  updated_at              DateTime            @db.Timestamptz(6)\n  github_updated_at       DateTime            @db.Timestamptz(6)\n  relevance               String              @default(\"Low\")\n  relevance_score         Int?                @default(0)\n  image_url               String?\n  readme_content          String?\n  sync_at                 DateTime?           @default(now()) @db.Timestamptz(6)\n  gemini_analyzed_at      DateTime?           @db.Timestamptz(6)\n  gemini_summary          String?\n  gemini_key_features     String[]            @default([])\n  gemini_use_cases        String[]            @default([])\n  gemini_analysis_version Int?                @default(1)\n  featured_projects       featured_projects[]\n\n  @@index([full_name], map: \"idx_github_projects_full_name\")\n  @@index([gemini_analyzed_at], map: \"idx_github_projects_gemini_analyzed_at\")\n  @@index([language], map: \"idx_github_projects_language\")\n  @@index([language, relevance_score(sort: Desc)], map: \"idx_github_projects_language_relevance\")\n  @@index([relevance], map: \"idx_github_projects_relevance\")\n  @@index([relevance_score(sort: Desc)], map: \"idx_github_projects_relevance_score\")\n  @@index([relevance_score(sort: Desc), stars(sort: Desc)], map: \"idx_github_projects_relevance_stars\")\n  @@index([stars(sort: Desc)], map: \"idx_github_projects_stars\")\n  @@index([sync_at], map: \"idx_github_projects_sync_at\")\n  @@index([github_updated_at], map: \"idx_github_projects_updated_at\")\n  @@schema(\"public\")\n}\n\n/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.\nmodel mcp_clients {\n  id            String    @id @default(dbgenerated(\"gen_random_uuid()\")) @db.Uuid\n  name          String\n  description   String?\n  logo_url      String?\n  homepage      String?\n  support_level String?   @default(\"full\")\n  platforms     String[]  @default([])\n  features      String[]  @default([])\n  updated_at    DateTime? @default(now()) @db.Timestamptz(6)\n\n  @@index([name], map: \"idx_mcp_clients_name\")\n  @@schema(\"public\")\n}\n\n/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.\nmodel profiles {\n  id         String    @id @db.Uuid\n  email      String?\n  created_at DateTime? @default(now()) @db.Timestamptz(6)\n  updated_at DateTime? @default(now()) @db.Timestamptz(6)\n  is_allowed Boolean?  @default(false)\n  users      users     @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: NoAction)\n\n  @@index([email], map: \"idx_profiles_email\")\n  @@schema(\"public\")\n}\n\n/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.\nmodel prompts_library {\n  id         String                 @id @default(dbgenerated(\"gen_random_uuid()\")) @db.Uuid\n  category   String?\n  title      String?                @unique\n  prompt     String?\n  cover_url  String?\n  embedding  Unsupported(\"vector\")?\n  created_at DateTime?              @default(now()) @db.Timestamptz(6)\n\n  @@index([category], map: \"idx_prompts_category\")\n  @@index([embedding], map: \"idx_prompts_embedding\")\n  @@index([title], map: \"idx_prompts_title\")\n  @@schema(\"public\")\n}\n\n/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.\nmodel remote_mcp_servers {\n  id          String    @id @default(dbgenerated(\"gen_random_uuid()\")) @db.Uuid\n  name        String\n  description String?\n  logo_url    String?\n  homepage    String?\n  connect_url String?\n  auth_type   String?\n  category    String?\n  tags        String[]  @default([])\n  status      String?   @default(\"active\")\n  updated_at  DateTime? @default(now()) @db.Timestamptz(6)\n\n  @@index([name], map: \"idx_remote_mcp_servers_name\")\n  @@schema(\"public\")\n}\n\nenum aal_level {\n  aal1\n  aal2\n  aal3\n\n  @@schema(\"auth\")\n}\n\nenum code_challenge_method {\n  s256\n  plain\n\n  @@schema(\"auth\")\n}\n\nenum factor_status {\n  unverified\n  verified\n\n  @@schema(\"auth\")\n}\n\nenum factor_type {\n  totp\n  webauthn\n  phone\n\n  @@schema(\"auth\")\n}\n\nenum oauth_authorization_status {\n  pending\n  approved\n  denied\n  expired\n\n  @@schema(\"auth\")\n}\n\nenum oauth_client_type {\n  public\n  confidential\n\n  @@schema(\"auth\")\n}\n\nenum oauth_registration_type {\n  dynamic\n  manual\n\n  @@schema(\"auth\")\n}\n\nenum oauth_response_type {\n  code\n\n  @@schema(\"auth\")\n}\n\nenum one_time_token_type {\n  confirmation_token\n  reauthentication_token\n  recovery_token\n  email_change_token_new\n  email_change_token_current\n  phone_change_token\n\n  @@schema(\"auth\")\n}\n\nmodel User {\n  id            String          @id @default(cuid())\n  name          String?\n  email         String          @unique\n  emailVerified DateTime?\n  image         String?\n  password      String?\n  accounts      Account[]\n  sessions      Session[]\n  Authenticator Authenticator[]\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  profile Profile?\n\n  @@schema(\"public\")\n}\n\nmodel Account {\n  userId            String\n  type              String\n  provider          String\n  providerAccountId String\n  refresh_token     String?\n  access_token      String?\n  expires_at        Int?\n  token_type        String?\n  scope             String?\n  id_token          String?\n  session_state     String?\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@id([provider, providerAccountId])\n  @@schema(\"public\")\n}\n\nmodel Session {\n  sessionToken String   @unique\n  userId       String\n  expires      DateTime\n  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@schema(\"public\")\n}\n\nmodel VerificationToken {\n  identifier String\n  token      String\n  expires    DateTime\n\n  @@id([identifier, token])\n  @@schema(\"public\")\n}\n\nmodel Authenticator {\n  credentialID         String  @unique\n  userId               String\n  providerAccountId    String\n  credentialPublicKey  String\n  counter              Int\n  credentialDeviceType String\n  credentialBackedUp   Boolean\n  transports           String?\n\n  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@id([userId, credentialID])\n  @@schema(\"public\")\n}\n\nmodel Profile {\n  id         String   @id\n  userId     String   @unique\n  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)\n  is_allowed Boolean  @default(false)\n  createdAt  DateTime @default(now())\n  updatedAt  DateTime @updatedAt\n\n  @@schema(\"public\")\n}\n",
+  "inlineSchemaHash": "2fcdbb7e8c3cb58076b7c7ec2a577057ca5c6df3acd93738c78fc3fc99765697",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"emailVerified\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"image\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"accounts\",\"kind\":\"object\",\"type\":\"Account\",\"relationName\":\"AccountToUser\"},{\"name\":\"sessions\",\"kind\":\"object\",\"type\":\"Session\",\"relationName\":\"SessionToUser\"},{\"name\":\"Authenticator\",\"kind\":\"object\",\"type\":\"Authenticator\",\"relationName\":\"AuthenticatorToUser\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"profile\",\"kind\":\"object\",\"type\":\"Profile\",\"relationName\":\"ProfileToUser\"}],\"dbName\":null},\"Account\":{\"fields\":[{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"provider\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"providerAccountId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"refresh_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"access_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expires_at\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"token_type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"scope\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"id_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"session_state\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"AccountToUser\"}],\"dbName\":null},\"Session\":{\"fields\":[{\"name\":\"sessionToken\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expires\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"SessionToUser\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"VerificationToken\":{\"fields\":[{\"name\":\"identifier\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expires\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Authenticator\":{\"fields\":[{\"name\":\"credentialID\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"providerAccountId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"credentialPublicKey\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"counter\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"credentialDeviceType\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"credentialBackedUp\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"transports\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"AuthenticatorToUser\"}],\"dbName\":null},\"Profile\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"ProfileToUser\"},{\"name\":\"is_allowed\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Job\":{\"fields\":[{\"name\":\"run_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"slogan\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cover_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"video_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"share_slug\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"provider_task_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"storyboards\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"total_duration\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"styles\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"image_control\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"jobs\"},\"VideoTask\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"run_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"clip_idx\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"video_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"error\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"}],\"dbName\":\"video_tasks\"},\"CrewSession\":{\"fields\":[{\"name\":\"run_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"error\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expected_clips\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"context\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"}],\"dbName\":\"crew_sessions\"}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Job\":{\"fields\":[{\"name\":\"run_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"slogan\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cover_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"video_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"share_slug\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"provider_task_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"storyboards\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"total_duration\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"styles\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"image_control\",\"kind\":\"scalar\",\"type\":\"Boolean\"}],\"dbName\":\"jobs\"},\"VideoTask\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"run_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"clip_idx\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"prompt\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"ref_img\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"duration\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"provider_task_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"video_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"error\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"retry_count\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"}],\"dbName\":\"video_tasks\"},\"CrewSession\":{\"fields\":[{\"name\":\"run_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"session_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expected_clips\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"context\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"result\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"error\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"}],\"dbName\":\"crew_sessions\"},\"audit_log_entries\":{\"fields\":[{\"name\":\"instance_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payload\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"ip_address\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"flow_state\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"auth_code\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"code_challenge_method\",\"kind\":\"enum\",\"type\":\"code_challenge_method\"},{\"name\":\"code_challenge\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"provider_type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"provider_access_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"provider_refresh_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"authentication_method\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"auth_code_issued_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"saml_relay_states\",\"kind\":\"object\",\"type\":\"saml_relay_states\",\"relationName\":\"flow_stateTosaml_relay_states\"}],\"dbName\":null},\"identities\":{\"fields\":[{\"name\":\"provider_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"identity_data\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"provider\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"last_sign_in_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"users\",\"relationName\":\"identitiesTousers\"}],\"dbName\":null},\"instances\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"uuid\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"raw_base_config\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"mfa_amr_claims\":{\"fields\":[{\"name\":\"session_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"authentication_method\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"sessions\",\"kind\":\"object\",\"type\":\"sessions\",\"relationName\":\"mfa_amr_claimsTosessions\"}],\"dbName\":null},\"mfa_challenges\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"factor_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"verified_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"ip_address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"otp_code\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"web_authn_session_data\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"mfa_factors\",\"kind\":\"object\",\"type\":\"mfa_factors\",\"relationName\":\"mfa_challengesTomfa_factors\"}],\"dbName\":null},\"mfa_factors\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"friendly_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"factor_type\",\"kind\":\"enum\",\"type\":\"factor_type\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"factor_status\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"secret\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"last_challenged_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"web_authn_credential\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"web_authn_aaguid\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"last_webauthn_challenge_data\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"mfa_challenges\",\"kind\":\"object\",\"type\":\"mfa_challenges\",\"relationName\":\"mfa_challengesTomfa_factors\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"users\",\"relationName\":\"mfa_factorsTousers\"}],\"dbName\":null},\"oauth_authorizations\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"authorization_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"client_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"redirect_uri\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"scope\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"state\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"resource\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"code_challenge\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"code_challenge_method\",\"kind\":\"enum\",\"type\":\"code_challenge_method\"},{\"name\":\"response_type\",\"kind\":\"enum\",\"type\":\"oauth_response_type\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"oauth_authorization_status\"},{\"name\":\"authorization_code\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"expires_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"approved_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"nonce\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"oauth_clients\",\"kind\":\"object\",\"type\":\"oauth_clients\",\"relationName\":\"oauth_authorizationsTooauth_clients\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"users\",\"relationName\":\"oauth_authorizationsTousers\"}],\"dbName\":null},\"oauth_client_states\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"provider_type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"code_verifier\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"oauth_clients\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"client_secret_hash\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"registration_type\",\"kind\":\"enum\",\"type\":\"oauth_registration_type\"},{\"name\":\"redirect_uris\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"grant_types\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"client_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"client_uri\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"logo_uri\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"deleted_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"client_type\",\"kind\":\"enum\",\"type\":\"oauth_client_type\"},{\"name\":\"oauth_authorizations\",\"kind\":\"object\",\"type\":\"oauth_authorizations\",\"relationName\":\"oauth_authorizationsTooauth_clients\"},{\"name\":\"oauth_consents\",\"kind\":\"object\",\"type\":\"oauth_consents\",\"relationName\":\"oauth_clientsTooauth_consents\"},{\"name\":\"sessions\",\"kind\":\"object\",\"type\":\"sessions\",\"relationName\":\"oauth_clientsTosessions\"}],\"dbName\":null},\"oauth_consents\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"client_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"scopes\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"granted_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"revoked_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"oauth_clients\",\"kind\":\"object\",\"type\":\"oauth_clients\",\"relationName\":\"oauth_clientsTooauth_consents\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"users\",\"relationName\":\"oauth_consentsTousers\"}],\"dbName\":null},\"one_time_tokens\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"token_type\",\"kind\":\"enum\",\"type\":\"one_time_token_type\"},{\"name\":\"token_hash\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"relates_to\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"users\",\"relationName\":\"one_time_tokensTousers\"}],\"dbName\":null},\"refresh_tokens\":{\"fields\":[{\"name\":\"instance_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"BigInt\"},{\"name\":\"token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"revoked\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"parent\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"session_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"sessions\",\"kind\":\"object\",\"type\":\"sessions\",\"relationName\":\"refresh_tokensTosessions\"}],\"dbName\":null},\"saml_providers\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"sso_provider_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"entity_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"metadata_xml\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"metadata_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"attribute_mapping\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"name_id_format\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"sso_providers\",\"kind\":\"object\",\"type\":\"sso_providers\",\"relationName\":\"saml_providersTosso_providers\"}],\"dbName\":null},\"saml_relay_states\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"sso_provider_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"request_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"for_email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"redirect_to\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"flow_state_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"flow_state\",\"kind\":\"object\",\"type\":\"flow_state\",\"relationName\":\"flow_stateTosaml_relay_states\"},{\"name\":\"sso_providers\",\"kind\":\"object\",\"type\":\"sso_providers\",\"relationName\":\"saml_relay_statesTosso_providers\"}],\"dbName\":null},\"schema_migrations\":{\"fields\":[{\"name\":\"version\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"sessions\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"factor_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"aal\",\"kind\":\"enum\",\"type\":\"aal_level\"},{\"name\":\"not_after\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"refreshed_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user_agent\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"ip\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tag\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"oauth_client_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"refresh_token_hmac_key\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"refresh_token_counter\",\"kind\":\"scalar\",\"type\":\"BigInt\"},{\"name\":\"scopes\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"mfa_amr_claims\",\"kind\":\"object\",\"type\":\"mfa_amr_claims\",\"relationName\":\"mfa_amr_claimsTosessions\"},{\"name\":\"refresh_tokens\",\"kind\":\"object\",\"type\":\"refresh_tokens\",\"relationName\":\"refresh_tokensTosessions\"},{\"name\":\"oauth_clients\",\"kind\":\"object\",\"type\":\"oauth_clients\",\"relationName\":\"oauth_clientsTosessions\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"users\",\"relationName\":\"sessionsTousers\"}],\"dbName\":null},\"sso_domains\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"sso_provider_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"domain\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"sso_providers\",\"kind\":\"object\",\"type\":\"sso_providers\",\"relationName\":\"sso_domainsTosso_providers\"}],\"dbName\":null},\"sso_providers\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"resource_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"disabled\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"saml_providers\",\"kind\":\"object\",\"type\":\"saml_providers\",\"relationName\":\"saml_providersTosso_providers\"},{\"name\":\"saml_relay_states\",\"kind\":\"object\",\"type\":\"saml_relay_states\",\"relationName\":\"saml_relay_statesTosso_providers\"},{\"name\":\"sso_domains\",\"kind\":\"object\",\"type\":\"sso_domains\",\"relationName\":\"sso_domainsTosso_providers\"}],\"dbName\":null},\"users\":{\"fields\":[{\"name\":\"instance_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"aud\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"encrypted_password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email_confirmed_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"invited_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"confirmation_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"confirmation_sent_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"recovery_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"recovery_sent_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"email_change_token_new\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email_change\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email_change_sent_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"last_sign_in_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"raw_app_meta_data\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"raw_user_meta_data\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"is_super_admin\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone_confirmed_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"phone_change\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone_change_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone_change_sent_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"confirmed_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"email_change_token_current\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email_change_confirm_status\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"banned_until\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"reauthentication_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"reauthentication_sent_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"is_sso_user\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"deleted_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"is_anonymous\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"identities\",\"kind\":\"object\",\"type\":\"identities\",\"relationName\":\"identitiesTousers\"},{\"name\":\"mfa_factors\",\"kind\":\"object\",\"type\":\"mfa_factors\",\"relationName\":\"mfa_factorsTousers\"},{\"name\":\"oauth_authorizations\",\"kind\":\"object\",\"type\":\"oauth_authorizations\",\"relationName\":\"oauth_authorizationsTousers\"},{\"name\":\"oauth_consents\",\"kind\":\"object\",\"type\":\"oauth_consents\",\"relationName\":\"oauth_consentsTousers\"},{\"name\":\"one_time_tokens\",\"kind\":\"object\",\"type\":\"one_time_tokens\",\"relationName\":\"one_time_tokensTousers\"},{\"name\":\"sessions\",\"kind\":\"object\",\"type\":\"sessions\",\"relationName\":\"sessionsTousers\"},{\"name\":\"profiles\",\"kind\":\"object\",\"type\":\"profiles\",\"relationName\":\"profilesTousers\"}],\"dbName\":null},\"claude_skills\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"path\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"download_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"github_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"sync_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"skill_md\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"community_servers\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"endpoint\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"category\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"features\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"compatibility\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"install_command\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"documentation_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"submitter_email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"submitter_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"submitted_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"approved_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"rejected_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"rejection_reason\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"approved_by\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"rejected_by\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"featured_projects\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"project_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"featured_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"featured_until\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"reason\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"featured_by\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"unfeatured_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"unfeatured_by\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"github_projects\",\"kind\":\"object\",\"type\":\"github_projects\",\"relationName\":\"featured_projectsTogithub_projects\"}],\"dbName\":null},\"github_projects\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"full_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"owner\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"owner_avatar\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"stars\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"forks\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"language\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"topics\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"github_updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"relevance\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"relevance_score\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"image_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"readme_content\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"sync_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"gemini_analyzed_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"gemini_summary\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"gemini_key_features\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"gemini_use_cases\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"gemini_analysis_version\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"featured_projects\",\"kind\":\"object\",\"type\":\"featured_projects\",\"relationName\":\"featured_projectsTogithub_projects\"}],\"dbName\":null},\"mcp_clients\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"logo_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"homepage\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"support_level\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"platforms\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"features\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"profiles\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"is_allowed\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"users\",\"relationName\":\"profilesTousers\"}],\"dbName\":null},\"prompts_library\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"category\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"prompt\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cover_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"remote_mcp_servers\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"logo_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"homepage\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"connect_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"auth_type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"category\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tags\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"emailVerified\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"image\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"accounts\",\"kind\":\"object\",\"type\":\"Account\",\"relationName\":\"AccountToUser\"},{\"name\":\"sessions\",\"kind\":\"object\",\"type\":\"Session\",\"relationName\":\"SessionToUser\"},{\"name\":\"Authenticator\",\"kind\":\"object\",\"type\":\"Authenticator\",\"relationName\":\"AuthenticatorToUser\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"profile\",\"kind\":\"object\",\"type\":\"Profile\",\"relationName\":\"ProfileToUser\"}],\"dbName\":null},\"Account\":{\"fields\":[{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"provider\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"providerAccountId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"refresh_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"access_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expires_at\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"token_type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"scope\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"id_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"session_state\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"AccountToUser\"}],\"dbName\":null},\"Session\":{\"fields\":[{\"name\":\"sessionToken\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expires\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"SessionToUser\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"VerificationToken\":{\"fields\":[{\"name\":\"identifier\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expires\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Authenticator\":{\"fields\":[{\"name\":\"credentialID\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"providerAccountId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"credentialPublicKey\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"counter\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"credentialDeviceType\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"credentialBackedUp\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"transports\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"AuthenticatorToUser\"}],\"dbName\":null},\"Profile\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"ProfileToUser\"},{\"name\":\"is_allowed\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),

@@ -1,3 +1,4 @@
+"use client"
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { EditorProvider } from './contexts/EditorContext';
@@ -9,10 +10,24 @@ import { Layout } from 'lucide-react';
 import { useSession, signOut } from 'next-auth/react';
 import { checkUserAuthorization } from './lib/actions';
 
-function App() {
-  const { data: session, status } = useSession();
-  const [isAllowed, setIsAllowed] = useState<boolean | null>(null);
-  const isLoadingAuth = status === 'loading';
+import { Session } from 'next-auth';
+
+interface AppProps {
+  initialSession?: Session | null;
+  initialIsAllowed?: boolean | null;
+}
+
+function App({ initialSession, initialIsAllowed }: AppProps) {
+  const { data: session, status } = useSession({
+    required: false,
+    // @ts-ignore
+    initialData: initialSession
+  });
+
+  const [isAllowed, setIsAllowed] = useState<boolean | null>(initialIsAllowed ?? null);
+  const currentSession = session || initialSession;
+  const currentStatus = initialSession ? 'authenticated' : status;
+  const isLoadingAuth = !initialSession && status === 'loading';
 
   // Editor State
   const [isEditorOpen, setIsEditorOpen] = useState(false);
@@ -38,12 +53,18 @@ function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   useEffect(() => {
-    if (session?.user?.email) {
-      checkUserAuthorization(session.user.email).then(setIsAllowed);
-    } else if (status === 'unauthenticated') {
+    if (initialIsAllowed !== undefined) {
+      setIsAllowed(initialIsAllowed);
+    }
+  }, [initialIsAllowed]);
+
+  useEffect(() => {
+    if (currentSession?.user?.email && initialIsAllowed === undefined) {
+      checkUserAuthorization(currentSession.user.email).then(setIsAllowed);
+    } else if (currentStatus === 'unauthenticated') {
       setIsAllowed(null);
     }
-  }, [session, status]);
+  }, [currentSession, currentStatus, initialIsAllowed]);
 
   // Superseded by server action in lib/actions.ts
   /*
@@ -88,7 +109,7 @@ function App() {
     return <div className="h-screen w-full bg-black text-white flex items-center justify-center">Loading...</div>;
   }
 
-  if (!session) {
+  if (currentStatus === 'unauthenticated' || !currentSession) {
     return <LandingPage onGrantAccess={() => { }} />;
   }
 
@@ -135,7 +156,7 @@ function App() {
           onSelectRun={setActiveRunId}
           onNewProject={handleNewProject}
           onLogout={handleLogout}
-          userEmail={session.user?.email}
+          userEmail={currentSession?.user?.email}
           isCollapsed={isSidebarCollapsed}
           toggleCollapse={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
           className={`shrink-0 z-20 relative transition-all duration-300 ${isSidebarCollapsed ? 'w-[70px]' : 'w-[280px]'}`}

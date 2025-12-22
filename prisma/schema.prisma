@@ -1,11 +1,80 @@
 generator client {
-  provider = "prisma-client-js"
-  output   = "./generated-client"
+  provider        = "prisma-client-js"
+  output          = "./generated-client"
+  previewFeatures = ["multiSchema"]
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  schemas  = ["auth", "public"]
+}
+
+model Job {
+  run_id           String    @id
+  user_id          String?   
+  slogan           String?
+  cover_url        String?
+  video_url        String?
+  share_slug       String?   @unique
+  status           String?   @default("running")
+  provider_task_id String?
+  created_at       DateTime? @default(now()) @db.Timestamptz(6)
+  updated_at       DateTime? @default(now()) @updatedAt @db.Timestamptz(6)
+  storyboards      Json?
+  total_duration   Float?    @db.Real
+  styles           String[]
+  image_control    Boolean?  @default(false)
+
+  @@index([created_at(sort: Desc)], map: "idx_jobs_created_at")
+  @@index([provider_task_id], map: "idx_jobs_provider_task_id")
+  @@index([share_slug], map: "idx_jobs_share_slug")
+  @@index([status], map: "idx_jobs_status")
+  @@index([storyboards], map: "idx_jobs_storyboards", type: Gin)
+  @@index([user_id], map: "idx_jobs_user_id")
+  @@map("jobs")
+  @@schema("public")
+}
+
+model VideoTask {
+  id               String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  run_id           String
+  clip_idx         Int
+  prompt           String
+  ref_img          String?
+  duration         Int?      @default(10)
+  status           String?   @default("pending")
+  provider_task_id String?
+  video_url        String?
+  error            String?
+  retry_count      Int?      @default(0)
+  createdAt        DateTime? @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt        DateTime? @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@index([createdAt], map: "idx_video_tasks_created_at")
+  @@index([provider_task_id], map: "idx_video_tasks_provider_task_id")
+  @@index([run_id], map: "idx_video_tasks_run_id")
+  @@index([status], map: "idx_video_tasks_status")
+  @@map("video_tasks")
+  @@schema("public")
+}
+
+model CrewSession {
+  run_id         String    @id
+  session_id     String
+  expected_clips Int
+  status         String?   @default("waiting_videos")
+  context        Json?
+  result         String?
+  error          String?
+  createdAt      DateTime? @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt      DateTime? @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@index([createdAt], map: "idx_crew_sessions_created_at")
+  @@index([session_id], map: "idx_crew_sessions_session_id")
+  @@index([status], map: "idx_crew_sessions_status")
+  @@map("crew_sessions")
+  @@schema("public")
 }
 
 model User {
@@ -17,14 +86,14 @@ model User {
   password      String?
   accounts      Account[]
   sessions      Session[]
-  // Optional: for WebAuthn support
   Authenticator Authenticator[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   
-  // Profile relation
   profile   Profile?
+
+  @@schema("public")
 }
 
 model Account {
@@ -46,6 +115,7 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([provider, providerAccountId])
+  @@schema("public")
 }
 
 model Session {
@@ -56,6 +126,8 @@ model Session {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@schema("public")
 }
 
 model VerificationToken {
@@ -64,9 +136,9 @@ model VerificationToken {
   expires    DateTime
 
   @@id([identifier, token])
+  @@schema("public")
 }
 
-// Optional: for WebAuthn support
 model Authenticator {
   credentialID         String  @unique
   userId               String
@@ -80,6 +152,7 @@ model Authenticator {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([userId, credentialID])
+  @@schema("public")
 }
 
 model Profile {
@@ -89,48 +162,7 @@ model Profile {
   is_allowed Boolean  @default(false)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-}
-
-model Job {
-  run_id           String   @id
-  user_id          String?
-  slogan           String?
-  cover_url        String?
-  video_url        String?
-  share_slug       String?  @unique
-  status           String   @default("running")
-  provider_task_id String?
-  storyboards      Json?
-  total_duration   Float?
-  styles           String[]
-  image_control    Boolean  @default(false)
-  created_at       DateTime @default(now())
-  updated_at       DateTime @default(now()) @updatedAt
-
-  @@map("jobs")
-}
-
-model VideoTask {
-  id        Int      @id @default(autoincrement())
-  run_id    String
-  clip_idx  Int
-  status    String
-  video_url String?
-  error     String?
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
-
-  @@map("video_tasks")
-}
-
-model CrewSession {
-  run_id         String   @id
-  status         String
-  error          String?
-  expected_clips Int?
-  context        Json?
-  createdAt      DateTime @default(now()) @map("created_at")
-  updatedAt      DateTime @default(now()) @updatedAt @map("updated_at")
-
-  @@map("crew_sessions")
+  
+  @@map("profiles")
+  @@schema("public")
 }

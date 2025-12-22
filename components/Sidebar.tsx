@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useEffect, useState } from 'react';
 import { Plus, MessageSquare, Video, ChevronLeft, ChevronRight, User, Settings, LogOut } from 'lucide-react';
 import { listWorkflows } from '../lib/saleagent-client';
