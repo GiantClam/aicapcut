@@ -108,16 +108,17 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGrantAccess }) => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white font-sans selection:bg-purple-500/30 overflow-x-hidden">
+    <div className="min-h-screen bg-black text-white font-sans selection:bg-indigo-500/30 overflow-x-hidden">
       {/* Navigation Menu Bar */}
       <nav className="fixed top-0 w-full z-50 border-b border-white/10 bg-black/80 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center shadow-lg shadow-purple-500/20">
-              <Sparkles className="w-4 h-4 text-white" />
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600 to-blue-600 flex items-center justify-center shadow-lg shadow-indigo-500/20 relative group">
+              <Play className="w-4 h-4 text-white fill-white ml-0.5" />
+              <Sparkles className="w-3 h-3 text-indigo-300 absolute -top-1 -right-1" />
             </div>
-            <span className="font-bold text-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">AutoViralVid</span>
+            <span className="font-bold text-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-zinc-400">AutoViralVid</span>
           </div>
 
           {/* Desktop Menu */}
@@ -162,20 +163,20 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGrantAccess }) => {
 
       {/* Hero Section */}
       <main className="pt-40 pb-20 px-6 relative">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-purple-600/20 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-indigo-600/10 blur-[100px] rounded-full pointer-events-none" />
 
         <div className="max-w-5xl mx-auto text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-purple-300 mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-indigo-300 mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
             </span>
             Now Accepting Early Access Applications
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-tight animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
             Turn Ideas into <br />
-            <span className="bg-gradient-to-r from-purple-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-indigo-400 via-sky-400 to-zinc-400 bg-clip-text text-transparent">
               Viral Hits Automatically
             </span>
           </h1>
@@ -206,14 +207,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGrantAccess }) => {
                 See what our autonomous agents can create in minutes. From cinematic trailers to viral social media clips.
               </p>
             </div>
-            <button onClick={() => setIsModalOpen(true)} className="text-purple-400 font-medium hover:text-purple-300 flex items-center gap-1">
+            <button onClick={() => setIsModalOpen(true)} className="text-indigo-400 font-medium hover:text-indigo-300 flex items-center gap-1">
               View Gallery <ArrowRight size={16} />
             </button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {INITIAL_ASSETS.slice(0, 3).map((asset, idx) => (
-              <div key={idx} className="group relative aspect-[9/16] md:aspect-video rounded-2xl overflow-hidden bg-[#111] border border-white/10 shadow-2xl transition-all hover:-translate-y-2 hover:shadow-purple-900/10 cursor-pointer">
+              <div key={idx} className="group relative aspect-[9/16] md:aspect-video rounded-2xl overflow-hidden bg-[#111] border border-white/10 shadow-2xl transition-all hover:-translate-y-2 hover:shadow-indigo-900/10 cursor-pointer">
                 {asset.type === 'video' ? (
                   <video
                     src={asset.url}
@@ -235,7 +236,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGrantAccess }) => {
                     <span>· 12k views</span>
                   </div>
                 </div>
-                <div className="absolute top-4 right-4 w-10 h-10 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center group-hover:bg-purple-500 group-hover:border-purple-500 transition-colors">
+                <div className="absolute top-4 right-4 w-10 h-10 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center group-hover:bg-indigo-500 group-hover:border-indigo-500 transition-colors">
                   <Play size={16} fill="currentColor" className="ml-0.5" />
                 </div>
               </div>
@@ -253,9 +254,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGrantAccess }) => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all hover:border-purple-500/30 group">
-              <div className="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-purple-500/20 transition-colors">
-                <Users className="w-7 h-7 text-purple-400" />
+            <div className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all hover:border-indigo-500/30 group">
+              <div className="w-14 h-14 bg-indigo-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-indigo-500/20 transition-colors">
+                <Users className="w-7 h-7 text-indigo-400" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-white">Multi-Agent Orchestration</h3>
               <p className="text-gray-400 leading-relaxed">
@@ -317,13 +318,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGrantAccess }) => {
                     <span>·</span>
                     <span>Feb 28, 2024</span>
                   </div>
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-purple-400 transition-colors leading-snug">
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-indigo-400 transition-colors leading-snug">
                     {post.title}
                   </h3>
                   <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-2">
                     {post.excerpt}
                   </p>
-                  <div className="inline-flex items-center gap-1 text-sm font-medium text-white group-hover:underline decoration-purple-500 underline-offset-4">
+                  <div className="inline-flex items-center gap-1 text-sm font-medium text-white group-hover:underline decoration-indigo-500 underline-offset-4">
                     Read Article <ArrowUpRight size={14} className="text-gray-500" />
                   </div>
                 </div>
@@ -344,7 +345,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGrantAccess }) => {
             <input
               type="email"
               placeholder="Enter your email"
-              className="w-full sm:w-80 bg-white/5 border border-white/10 rounded-full px-6 py-4 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all"
+              className="w-full sm:w-80 bg-white/5 border border-white/10 rounded-full px-6 py-4 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -363,7 +364,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGrantAccess }) => {
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center">
+              <div className="w-6 h-6 rounded bg-gradient-to-br from-indigo-600 to-blue-600 flex items-center justify-center">
                 <Sparkles className="w-3 h-3 text-white" />
               </div>
               <span className="font-bold text-lg text-white">AutoViralVid</span>
@@ -381,29 +382,29 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGrantAccess }) => {
           <div>
             <h4 className="text-white font-semibold mb-6">Product</h4>
             <ul className="space-y-3 text-gray-500">
-              <li><button onClick={() => scrollToSection('features')} className="hover:text-purple-400 transition-colors text-left">Features</button></li>
-              <li><button onClick={() => scrollToSection('showcase')} className="hover:text-purple-400 transition-colors text-left">Showcase</button></li>
-              <li><button onClick={() => scrollToSection('pricing')} className="hover:text-purple-400 transition-colors text-left">Pricing</button></li>
-              <li><button onClick={() => setIsModalOpen(true)} className="hover:text-purple-400 transition-colors text-left">Enterprise</button></li>
+              <li><button onClick={() => scrollToSection('features')} className="hover:text-indigo-400 transition-colors text-left">Features</button></li>
+              <li><button onClick={() => scrollToSection('showcase')} className="hover:text-indigo-400 transition-colors text-left">Showcase</button></li>
+              <li><button onClick={() => scrollToSection('pricing')} className="hover:text-indigo-400 transition-colors text-left">Pricing</button></li>
+              <li><button onClick={() => setIsModalOpen(true)} className="hover:text-indigo-400 transition-colors text-left">Enterprise</button></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-white font-semibold mb-6">Resources</h4>
             <ul className="space-y-3 text-gray-500">
-              <li><button onClick={() => scrollToSection('blog')} className="hover:text-purple-400 transition-colors text-left">Blog</button></li>
-              <li><a href="#" className="hover:text-purple-400 transition-colors">Documentation</a></li>
-              <li><a href="#" className="hover:text-purple-400 transition-colors">Community</a></li>
-              <li><a href="#" className="hover:text-purple-400 transition-colors">Help Center</a></li>
+              <li><button onClick={() => scrollToSection('blog')} className="hover:text-indigo-400 transition-colors text-left">Blog</button></li>
+              <li><a href="#" className="hover:text-indigo-400 transition-colors">Documentation</a></li>
+              <li><a href="#" className="hover:text-indigo-400 transition-colors">Community</a></li>
+              <li><a href="#" className="hover:text-indigo-400 transition-colors">Help Center</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-white font-semibold mb-6">Legal</h4>
             <ul className="space-y-3 text-gray-500">
-              <li><a href="#" className="hover:text-purple-400 transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-purple-400 transition-colors">Terms of Service</a></li>
-              <li><a href="#" className="hover:text-purple-400 transition-colors">Cookie Policy</a></li>
+              <li><a href="#" className="hover:text-indigo-400 transition-colors">Privacy Policy</a></li>
+              <li><a href="#" className="hover:text-indigo-400 transition-colors">Terms of Service</a></li>
+              <li><a href="#" className="hover:text-indigo-400 transition-colors">Cookie Policy</a></li>
             </ul>
           </div>
         </div>
@@ -420,7 +421,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGrantAccess }) => {
           <div className="w-full max-w-md bg-[#111] border border-white/10 rounded-2xl shadow-2xl p-8 relative overflow-hidden">
 
             {/* Modal Glow */}
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 via-blue-500 to-purple-500" />
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 via-blue-500 to-indigo-500" />
 
             <button
               onClick={() => setIsModalOpen(false)}
@@ -453,7 +454,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGrantAccess }) => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="you@example.com"
-                        className="w-full bg-[#222] border border-[#333] rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors"
+                        className="w-full bg-[#222] border border-[#333] rounded-lg px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors"
                       />
                     </div>
                     <div>
@@ -465,7 +466,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGrantAccess }) => {
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="••••••••"
                         minLength={6}
-                        className="w-full bg-[#222] border border-[#333] rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors"
+                        className="w-full bg-[#222] border border-[#333] rounded-lg px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors"
                       />
                     </div>
                     <button
@@ -480,7 +481,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGrantAccess }) => {
                   <div className="text-center text-sm">
                     <button
                       onClick={() => setIsSignUpMode(!isSignUpMode)}
-                      className="text-purple-400 hover:text-purple-300"
+                      className="text-indigo-400 hover:text-indigo-300"
                     >
                       {isSignUpMode ? 'Already have an account? Sign In' : "Don't have an account? Sign Up"}
                     </button>
@@ -522,7 +523,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGrantAccess }) => {
 
             {applicationStep === 'processing' && (
               <div className="text-center py-12 animate-in fade-in duration-300">
-                <div className="w-16 h-16 border-4 border-white/10 border-t-purple-500 rounded-full animate-spin mx-auto mb-6" />
+                <div className="w-16 h-16 border-4 border-white/10 border-t-indigo-500 rounded-full animate-spin mx-auto mb-6" />
                 <h3 className="text-xl font-bold mb-2">Processing...</h3>
                 <p className="text-gray-500">Please wait</p>
               </div>

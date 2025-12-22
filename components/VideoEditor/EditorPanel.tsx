@@ -25,7 +25,7 @@ const EditorPanel: React.FC = () => {
       {/* Top Bar */}
       <div className="h-12 bg-[#1e1e1e] border-b border-[#333] flex items-center justify-between px-6 shrink-0 z-30">
         <div className="flex items-center gap-2">
-          <h1 className="text-white font-bold text-lg bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">AutoViralVid</h1>
+          <h1 className="text-white font-bold text-lg bg-gradient-to-r from-indigo-500 to-blue-500 bg-clip-text text-transparent">AutoViralVid</h1>
           <span className="text-gray-500 text-sm">/</span>
           <span className="text-gray-300 text-sm font-medium truncate max-w-[200px]">{project.name}</span>
         </div>

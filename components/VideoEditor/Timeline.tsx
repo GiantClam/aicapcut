@@ -38,7 +38,7 @@ const TimelineItemBlock: React.FC<TimelineItemBlockProps> = ({ item, isSelected,
     let bgColor = 'bg-gray-600';
     let borderColor = 'border-transparent';
     let Icon = Film;
-    
+
     switch (item.type) {
         case ItemType.VIDEO: bgColor = 'bg-blue-600'; Icon = Film; break;
         case ItemType.IMAGE: bgColor = 'bg-indigo-600'; Icon = ImageIcon; break;
@@ -49,7 +49,7 @@ const TimelineItemBlock: React.FC<TimelineItemBlockProps> = ({ item, isSelected,
     if (isSelected) {
         borderColor = 'border-white';
     }
-    
+
     // Invalid state overrides selection border
     if (!isValid) {
         borderColor = 'border-red-500';
@@ -58,12 +58,12 @@ const TimelineItemBlock: React.FC<TimelineItemBlockProps> = ({ item, isSelected,
 
     return (
         <div
-            onMouseDown={(e) => { 
-                e.stopPropagation(); 
+            onMouseDown={(e) => {
+                e.stopPropagation();
                 onSelect();
                 onDragStart(e, 'move');
             }}
-            className={`absolute h-full rounded-md overflow-visible border-2 cursor-pointer transition-colors group ${borderColor} ${isSelected ? 'ring-2 ring-purple-500 z-10' : 'opacity-90 hover:opacity-100'} ${!isValid ? 'z-50' : ''}`}
+            className={`absolute h-full rounded-md overflow-visible border-2 cursor-pointer transition-colors group ${borderColor} ${isSelected ? 'ring-2 ring-indigo-500 z-10' : 'opacity-90 hover:opacity-100'} ${!isValid ? 'z-50' : ''}`}
             style={{
                 left: `${item.startTime * SCALE}px`,
                 width: `${item.duration * SCALE}px`,
@@ -72,7 +72,7 @@ const TimelineItemBlock: React.FC<TimelineItemBlockProps> = ({ item, isSelected,
             }}
         >
             {/* Left Handle */}
-            <div 
+            <div
                 className={`absolute left-0 top-0 bottom-0 w-3 -ml-1.5 cursor-w-resize z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 hover:opacity-100 ${isSelected ? 'opacity-100' : ''}`}
                 onMouseDown={(e) => {
                     e.stopPropagation();
@@ -94,21 +94,21 @@ const TimelineItemBlock: React.FC<TimelineItemBlockProps> = ({ item, isSelected,
             </div>
 
             {/* Right Handle */}
-            <div 
+            <div
                 className={`absolute right-0 top-0 bottom-0 w-3 -mr-1.5 cursor-e-resize z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 hover:opacity-100 ${isSelected ? 'opacity-100' : ''}`}
                 onMouseDown={(e) => {
                     e.stopPropagation();
                     onDragStart(e, 'resize-r');
                 }}
             >
-                 <div className="w-1.5 h-6 bg-white/50 rounded-full shadow-sm" />
+                <div className="w-1.5 h-6 bg-white/50 rounded-full shadow-sm" />
             </div>
-            
+
             {/* Tooltip on Hover/Select/Drag */}
-             <div className="absolute -top-8 left-0 bg-black/90 text-white text-[10px] px-2 py-1 rounded border border-gray-700 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50 shadow-lg">
+            <div className="absolute -top-8 left-0 bg-black/90 text-white text-[10px] px-2 py-1 rounded border border-gray-700 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50 shadow-lg">
                 <span className="text-gray-400">Start:</span> {item.startTime.toFixed(2)}s <span className="text-gray-600 mx-1">|</span> <span className="text-gray-400">Dur:</span> {item.duration.toFixed(2)}s
                 {!isValid && <span className="text-red-400 ml-2 font-bold">OVERLAP</span>}
-             </div>
+            </div>
         </div>
     );
 };
@@ -118,7 +118,7 @@ const Timeline: React.FC = () => {
     const timelineRef = useRef<HTMLDivElement>(null);
     const [isScrubbing, setIsScrubbing] = useState(false);
     const [dragOverTrack, setDragOverTrack] = useState<number | null>(null);
-    
+
     // State for moving/resizing items
     const [interaction, setInteraction] = useState<InteractionState | null>(null);
     const [tempItemState, setTempItemState] = useState<TempItemState | null>(null);
@@ -171,24 +171,24 @@ const Timeline: React.FC = () => {
         // 1. Gather constraints and snap points
         // Constraints are only strictly applied for resizing.
         // For moving, we allow free movement and validate on drop (showing red if invalid).
-        
+
         let minConstraint = 0;
         let maxConstraint = Infinity;
-        
+
         const otherItems = track.items
             .filter(i => i.id !== item.id)
             .sort((a, b) => a.startTime - b.startTime);
 
         // Calculate resize constraints based on neighbors (cannot resize through another clip)
         if (type === 'resize-l') {
-             const prevItem = otherItems.filter(i => i.startTime + i.duration <= item.startTime + 0.001).pop();
-             const originalEnd = item.startTime + item.duration;
-             minConstraint = prevItem ? prevItem.startTime + prevItem.duration : 0;
-             maxConstraint = originalEnd - MIN_DURATION;
+            const prevItem = otherItems.filter(i => i.startTime + i.duration <= item.startTime + 0.001).pop();
+            const originalEnd = item.startTime + item.duration;
+            minConstraint = prevItem ? prevItem.startTime + prevItem.duration : 0;
+            maxConstraint = originalEnd - MIN_DURATION;
         } else if (type === 'resize-r') {
-             const nextItem = otherItems.find(i => i.startTime >= item.startTime + item.duration - 0.001);
-             minConstraint = MIN_DURATION;
-             maxConstraint = nextItem ? nextItem.startTime - item.startTime : Infinity;
+            const nextItem = otherItems.find(i => i.startTime >= item.startTime + item.duration - 0.001);
+            minConstraint = MIN_DURATION;
+            maxConstraint = nextItem ? nextItem.startTime - item.startTime : Infinity;
         } else {
             // For move, we set no rigid constraints to allow jumping order
             minConstraint = 0;
@@ -254,12 +254,12 @@ const Timeline: React.FC = () => {
             // --- 2. Apply Constraints (Clamp) ---
             if (interaction.type !== 'move') {
                 // Resize must strictly obey neighbors
-                 if (interaction.type === 'resize-l') {
-                     newStart = Math.max(interaction.minConstraint, Math.min(interaction.maxConstraint, newStart));
-                     newDuration = (interaction.originalStart + interaction.originalDuration) - newStart;
-                 } else {
-                     newDuration = Math.max(interaction.minConstraint, Math.min(interaction.maxConstraint, newDuration));
-                 }
+                if (interaction.type === 'resize-l') {
+                    newStart = Math.max(interaction.minConstraint, Math.min(interaction.maxConstraint, newStart));
+                    newDuration = (interaction.originalStart + interaction.originalDuration) - newStart;
+                } else {
+                    newDuration = Math.max(interaction.minConstraint, Math.min(interaction.maxConstraint, newDuration));
+                }
             } else {
                 // Move is free but clamped to 0
                 newStart = Math.max(0, newStart);
@@ -268,7 +268,7 @@ const Timeline: React.FC = () => {
             // --- 3. Apply Snapping ---
             // We try to snap the 'active' edges to any snap point
             let bestSnapDelta = Infinity;
-            
+
             // Edges to check for snapping
             const activeEdges = [];
             if (interaction.type === 'move') {
@@ -296,7 +296,7 @@ const Timeline: React.FC = () => {
                     newStart += bestSnapDelta;
                 } else if (interaction.type === 'resize-l') {
                     newStart += bestSnapDelta;
-                    newDuration -= bestSnapDelta; 
+                    newDuration -= bestSnapDelta;
                 } else if (interaction.type === 'resize-r') {
                     newDuration += bestSnapDelta;
                 }
@@ -315,16 +315,16 @@ const Timeline: React.FC = () => {
             }
 
             // Final Constraints Check (just in case snapping pushed it out of bounds)
-             if (interaction.type !== 'move') {
-                 if (interaction.type === 'resize-l') {
-                     newStart = Math.max(interaction.minConstraint, Math.min(interaction.maxConstraint, newStart));
-                     newDuration = (interaction.originalStart + interaction.originalDuration) - newStart;
-                 } else {
-                     newDuration = Math.max(interaction.minConstraint, Math.min(interaction.maxConstraint, newDuration));
-                 }
-             } else {
-                 newStart = Math.max(0, newStart);
-             }
+            if (interaction.type !== 'move') {
+                if (interaction.type === 'resize-l') {
+                    newStart = Math.max(interaction.minConstraint, Math.min(interaction.maxConstraint, newStart));
+                    newDuration = (interaction.originalStart + interaction.originalDuration) - newStart;
+                } else {
+                    newDuration = Math.max(interaction.minConstraint, Math.min(interaction.maxConstraint, newDuration));
+                }
+            } else {
+                newStart = Math.max(0, newStart);
+            }
 
             // Clean floats
             newStart = parseFloat(newStart.toFixed(4));
@@ -343,8 +343,8 @@ const Timeline: React.FC = () => {
                 const hasOverlap = interaction.collisionZones.some(z => {
                     // Overlap if (StartA < EndB) and (EndA > StartB)
                     // Use a small epsilon to allow touching edges
-                    return tempItemState.startTime < z.end - 0.001 && 
-                           (tempItemState.startTime + tempItemState.duration) > z.start + 0.001;
+                    return tempItemState.startTime < z.end - 0.001 &&
+                        (tempItemState.startTime + tempItemState.duration) > z.start + 0.001;
                 });
 
                 if (!hasOverlap) {
@@ -380,10 +380,10 @@ const Timeline: React.FC = () => {
     const handleDrop = (e: React.DragEvent, trackId: number) => {
         e.preventDefault();
         setDragOverTrack(null);
-        
+
         const assetData = e.dataTransfer.getData('application/json');
         if (!assetData) return;
-        
+
         const asset: Asset = JSON.parse(assetData);
         if (!timelineRef.current) return;
 
@@ -391,11 +391,11 @@ const Timeline: React.FC = () => {
         const x = e.clientX - rect.left + timelineRef.current.scrollLeft;
         let startTime = Math.max(0, x / SCALE);
         let snappedStart = Math.round(startTime / SNAP_GRID) * SNAP_GRID;
-        const defaultDuration = Math.max(MIN_DURATION, asset.type === ItemType.IMAGE ? 3 : 5); 
-        
+        const defaultDuration = Math.max(MIN_DURATION, asset.type === ItemType.IMAGE ? 3 : 5);
+
         const track = project.tracks.find(t => t.id === trackId);
         if (track) {
-            const sortedItems = [...track.items].sort((a,b) => a.startTime - b.startTime);
+            const sortedItems = [...track.items].sort((a, b) => a.startTime - b.startTime);
             const overlaps = (start: number, end: number) => {
                 return sortedItems.some(i => (start < i.startTime + i.duration) && (end > i.startTime));
             };
@@ -406,8 +406,8 @@ const Timeline: React.FC = () => {
                 if (overlappingItem) {
                     snappedStart = overlappingItem.startTime + overlappingItem.duration;
                     if (overlaps(snappedStart, snappedStart + defaultDuration)) {
-                         const lastItem = sortedItems[sortedItems.length - 1];
-                         snappedStart = lastItem ? lastItem.startTime + lastItem.duration : 0;
+                        const lastItem = sortedItems[sortedItems.length - 1];
+                        snappedStart = lastItem ? lastItem.startTime + lastItem.duration : 0;
                     }
                 }
             }
@@ -433,8 +433,8 @@ const Timeline: React.FC = () => {
         if (!track) return false;
         return track.items.some(i => {
             if (i.id === item.id) return false;
-            return item.startTime < (i.startTime + i.duration - 0.001) && 
-                   (item.startTime + item.duration) > (i.startTime + 0.001);
+            return item.startTime < (i.startTime + i.duration - 0.001) &&
+                (item.startTime + item.duration) > (i.startTime + 0.001);
         });
     };
 
@@ -447,26 +447,26 @@ const Timeline: React.FC = () => {
                     <span>Min Duration: {MIN_DURATION}s</span>
                 </div>
                 <div>
-                   Drag to move (Jump enabled) • Drag edges to trim • Delete key to remove
+                    Drag to move (Jump enabled) • Drag edges to trim • Delete key to remove
                 </div>
             </div>
 
             <div className="flex-1 flex overflow-hidden relative">
                 {/* Track Headers */}
                 <div className="w-32 bg-[#1e1e1e] border-r border-[#333] z-30 shrink-0 flex flex-col pt-8 shadow-md">
-                     {project.tracks.map(track => (
-                         <div key={track.id} className="h-20 border-b border-[#333] flex items-center px-3 gap-2 text-gray-300 text-sm font-medium bg-[#1e1e1e]">
+                    {project.tracks.map(track => (
+                        <div key={track.id} className="h-20 border-b border-[#333] flex items-center px-3 gap-2 text-gray-300 text-sm font-medium bg-[#1e1e1e]">
                             <span className="w-5 h-5 flex items-center justify-center rounded bg-[#333] text-[10px] text-gray-500">{track.id}</span>
                             <div className="flex flex-col truncate">
                                 <span className="truncate">{track.name}</span>
                                 <span className="text-[10px] text-gray-500 uppercase">{track.type}</span>
                             </div>
-                         </div>
-                     ))}
+                        </div>
+                    ))}
                 </div>
 
                 {/* Timeline Area */}
-                <div 
+                <div
                     ref={timelineRef}
                     className="flex-1 overflow-x-auto overflow-y-hidden relative bg-[#111]"
                     onMouseDown={(e) => {
@@ -479,20 +479,20 @@ const Timeline: React.FC = () => {
                     onMouseMove={handleScrubMouseMove}
                 >
                     <div style={{ width: `${Math.max(project.duration + 10, 60) * SCALE}px`, height: '100%' }} className="relative pt-8">
-                        
+
                         {/* Time Ruler */}
                         <div className="absolute top-0 left-0 right-0 h-8 bg-[#1e1e1e] border-b border-[#333] flex items-end sticky z-10">
-                             {Array.from({ length: Math.ceil(project.duration + 10) }).map((_, i) => (
-                                 <div key={i} className="absolute bottom-0 h-4 border-l border-gray-600 text-[10px] text-gray-500 pl-1 select-none pointer-events-none" style={{ left: `${i * SCALE}px`}}>
-                                     {i}s
-                                 </div>
-                             ))}
+                            {Array.from({ length: Math.ceil(project.duration + 10) }).map((_, i) => (
+                                <div key={i} className="absolute bottom-0 h-4 border-l border-gray-600 text-[10px] text-gray-500 pl-1 select-none pointer-events-none" style={{ left: `${i * SCALE}px` }}>
+                                    {i}s
+                                </div>
+                            ))}
                         </div>
 
                         {/* Tracks */}
                         {project.tracks.map(track => (
-                            <div 
-                                key={track.id} 
+                            <div
+                                key={track.id}
                                 className={`h-20 border-b border-[#222] relative track-row transition-colors ${dragOverTrack === track.id ? 'bg-[#222]' : ''}`}
                                 onDragOver={(e) => handleDragOver(e, track.id)}
                                 onDrop={(e) => handleDrop(e, track.id)}
@@ -502,14 +502,14 @@ const Timeline: React.FC = () => {
                                     // Use temp state if interacting
                                     const isInteracting = tempItemState && tempItemState.id === item.id;
                                     const effectiveItem = isInteracting ? { ...item, ...tempItemState } : item;
-                                    
+
                                     // Check validity for visual feedback
                                     const isValid = !checkCurrentOverlap(effectiveItem, track.id);
 
                                     return (
                                         <div key={item.id} className="timeline-item-block">
-                                            <TimelineItemBlock 
-                                                item={effectiveItem} 
+                                            <TimelineItemBlock
+                                                item={effectiveItem}
                                                 isSelected={selectedItemId === item.id}
                                                 isValid={isValid}
                                                 onSelect={() => selectItem(item.id)}
@@ -522,7 +522,7 @@ const Timeline: React.FC = () => {
                         ))}
 
                         {/* Playhead */}
-                        <div 
+                        <div
                             className="absolute top-0 bottom-0 w-[1px] bg-red-500 z-40 pointer-events-none"
                             style={{ left: `${currentTime * SCALE}px` }}
                         >
