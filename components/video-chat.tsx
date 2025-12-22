@@ -96,11 +96,7 @@ type EditingScene = {
 
 // Helper to get base URL
 const getBaseUrl = () => {
-    // Check for Vite environment variable
-    if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.AGENT_URL) {
-        return import.meta.env.AGENT_URL;
-    }
-    return import.meta.env.AGENT_URL;
+  return process.env.NEXT_PUBLIC_AGENT_URL || process.env.AGENT_URL || '';
 };
 
 export function VideoChat() {
@@ -116,10 +112,10 @@ export function VideoChat() {
     if (conversationState.runId || loading) {
       return
     }
-    
+
     const threadId = `t_${Date.now()}`
     const runId = `r_${Date.now()}`
-    
+
     setConversationState({
       runId,
       threadId,
@@ -142,7 +138,7 @@ export function VideoChat() {
       if (!res.ok || !res.body) {
         throw new Error("请求失败")
       }
-      
+
       // ... (rest of stream handling)
     } catch (error) {
       // ...
@@ -156,7 +152,7 @@ export function VideoChat() {
 
     const userMessage = input.trim()
     setInput("")
-    
+
     // 添加用户消息
     addMessage("user", userMessage)
     setLoading(true)
@@ -177,10 +173,10 @@ export function VideoChat() {
       if (!res.ok || !res.body) {
         throw new Error("请求失败")
       }
-      
+
       // ... (rest of stream handling)
     } catch (error) {
-       // ...
+      // ...
     }
   }, [input, loading, conversationState])
 
@@ -215,12 +211,12 @@ export function VideoChat() {
         })
 
         if (!res.ok || !res.body) {
-            throw new Error("请求失败")
+          throw new Error("请求失败")
         }
-        
+
         // ... (rest of stream handling)
       } catch (error) {
-         // ...
+        // ...
       }
     },
     [loading, conversationState, addMessage, handleEvent]
@@ -241,10 +237,10 @@ export function VideoChat() {
           scene_idx: editingScene.scene.scene_idx,
         }),
       })
-      
+
       // ... (rest of logic)
     } catch (error) {
-       // ...
+      // ...
     } finally {
       setIsRegenerating(false)
     }
@@ -271,13 +267,13 @@ export function VideoChat() {
         method: "POST",
         body: formData,
       })
-      
+
       // ... (rest of logic)
     } catch (error) {
-       // ...
+      // ...
     }
   }, [editingScene, editedScript, uploadedImage, addMessage])
-  
+
   // ... (rest of component)
 
   // 取消编辑
@@ -309,7 +305,7 @@ export function VideoChat() {
       </div>
 
       {/* 对话区域 */}
-      <div 
+      <div
         ref={scrollAreaRef}
         className="flex-1 px-6 py-4 overflow-y-auto"
         style={{
@@ -351,8 +347,8 @@ export function VideoChat() {
                     message.role === "user"
                       ? "bg-primary text-primary-foreground"
                       : message.role === "system"
-                      ? "bg-muted"
-                      : "bg-card border"
+                        ? "bg-muted"
+                        : "bg-card border"
                   )}
                 >
                   <CardContent className="p-0">
@@ -420,7 +416,7 @@ export function VideoChat() {
                         </Card>
                       </div>
                     )}
-                    
+
                     {message.content && !message.finalVideo && (
                       <p
                         className={cn(
@@ -431,7 +427,7 @@ export function VideoChat() {
                         {message.content}
                       </p>
                     )}
-                    
+
                     {/* 智能体输出展示 */}
                     {message.agentOutputs && message.agentOutputs.length > 0 && (
                       <div className="mt-4 space-y-2">
@@ -464,7 +460,7 @@ export function VideoChat() {
                         </div>
                       </div>
                     )}
-                    
+
                     {/* 最终视频展示 */}
                     {message.finalVideo && message.finalVideo.video_url && (
                       <div className="mt-4 space-y-4">
@@ -529,7 +525,7 @@ export function VideoChat() {
                         </Card>
                       </div>
                     )}
-                    
+
                     {/* 视频片段展示 */}
                     {message.videoClips && message.videoClips.clips && message.videoClips.clips.length > 0 && (
                       <div className="mt-4 space-y-4">
@@ -642,9 +638,9 @@ export function VideoChat() {
                                     addMessage("system", "错误：缺少 run_id")
                                     return
                                   }
-                                  
+
                                   addMessage("system", "已确认所有视频片段，开始拼接最终视频...")
-                                  
+
                                   const res = await fetch(`/api/crewai/video-clips/confirm`, {
                                     method: "POST",
                                     headers: { "Content-Type": "application/json" },
@@ -653,16 +649,16 @@ export function VideoChat() {
                                       confirmed: true,
                                     }),
                                   })
-                                  
+
                                   const data = await res.json()
                                   console.log("[Video Clips Confirm] Response data:", data)
-                                  
+
                                   if (res.ok && data.final_url) {
                                     console.log("[Video Clips Confirm] Adding final video message with URL:", data.final_url)
                                     // 添加最终视频消息，包含视频播放器
                                     addMessage(
-                                      "assistant", 
-                                      "恭喜！您的多智能体营销视频已成功生成。现在可以播放、下载或分享了。", 
+                                      "assistant",
+                                      "恭喜！您的多智能体营销视频已成功生成。现在可以播放、下载或分享了。",
                                       undefined, // options
                                       undefined, // storyboard
                                       undefined, // videoClips
@@ -700,7 +696,7 @@ export function VideoChat() {
                         )}
                       </div>
                     )}
-                    
+
                     {/* 故事板展示 */}
                     {message.storyboard && message.storyboard.scenes && message.storyboard.scenes.length > 0 && (
                       <div className="mt-4 space-y-4">
@@ -785,7 +781,7 @@ export function VideoChat() {
                               onClick={async () => {
                                 const runId = message.storyboard?.runId || conversationState.runId
                                 if (!runId) return
-                                
+
                                 setLoading(true)
                                 try {
                                   const res = await fetch(`${getBaseUrl()}/crewai/storyboard/confirm`, {
@@ -796,7 +792,7 @@ export function VideoChat() {
                                       confirmed: true,
                                     }),
                                   })
-                                  
+
                                   if (res.ok) {
                                     addMessage("system", "已确认故事板，继续生成视频...")
                                     // 继续监听后续事件
@@ -817,7 +813,7 @@ export function VideoChat() {
                               onClick={async () => {
                                 const runId = message.storyboard?.runId || conversationState.runId
                                 if (!runId) return
-                                
+
                                 setLoading(true)
                                 try {
                                   const res = await fetch(`${getBaseUrl()}/crewai/storyboard/confirm`, {
@@ -829,7 +825,7 @@ export function VideoChat() {
                                       feedback: "用户要求重新生成",
                                     }),
                                   })
-                                  
+
                                   if (res.ok) {
                                     addMessage("system", "已标记为拒绝，正在重新生成故事板...")
                                     setLoading(false)

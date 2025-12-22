@@ -2,7 +2,7 @@ import Script from 'next/script'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="zh-CN">
+    <html lang="zh-CN" suppressHydrationWarning>
       <head>
         <Script src="https://cdn.tailwindcss.com" strategy="beforeInteractive" />
         <style>{`
@@ -12,7 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           ::-webkit-scrollbar-thumb:hover { background: #444; }
         `}</style>
       </head>
-      <body>{children}</body>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   )
 }
