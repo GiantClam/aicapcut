@@ -38,7 +38,7 @@ export async function registerUser(email: string, password: string) {
                 profile: {
                     create: {
                         id: `prof_${Date.now()}`,
-                        is_allowed: false
+                        is_allowed: true
                     }
                 }
             }

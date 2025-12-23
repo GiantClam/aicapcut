@@ -160,7 +160,7 @@ model Profile {
   id         String   @id
   userId     String   @unique
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  is_allowed Boolean  @default(false)
+  is_allowed Boolean  @default(true)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 

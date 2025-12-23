@@ -84,7 +84,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                     data: {
                         id: `prof_${user.id}_${Date.now()}`,
                         userId: user.id!,
-                        is_allowed: false
+                        is_allowed: true
                     }
                 })
             }
