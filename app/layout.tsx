@@ -1,5 +1,5 @@
-import Script from 'next/script'
 import { Providers } from '../components/Providers'
+import './globals.css'
 
 import { auth } from '../auth'
 
@@ -9,7 +9,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="zh-CN" suppressHydrationWarning>
       <head>
-        <Script src="https://cdn.tailwindcss.com" strategy="beforeInteractive" />
         <style>{`
           ::-webkit-scrollbar { width: 8px; height: 8px; }
           ::-webkit-scrollbar-track { background: #111; }

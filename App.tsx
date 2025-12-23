@@ -113,7 +113,7 @@ function App({ initialSession, initialIsAllowed }: AppProps) {
     return <LandingPage onGrantAccess={() => { }} />;
   }
 
-  if (isAllowed === false) {
+  if (isAllowed === false && currentStatus === 'authenticated') {
     return (
       <div className="h-screen w-full bg-black text-white flex flex-col items-center justify-center p-6 text-center">
         <div className="max-w-md space-y-6">

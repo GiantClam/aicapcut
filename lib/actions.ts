@@ -12,7 +12,19 @@ export async function checkUserAuthorization(email: string | null | undefined) {
             include: { profile: true }
         });
 
-        return user?.profile?.is_allowed || false;
+        console.log(`[checkUserAuthorization] Checking ${email}:`, {
+            found: !!user,
+            hasProfile: !!user?.profile,
+            isAllowed: user?.profile?.is_allowed
+        });
+
+        // If user exists but somehow no profile, we default to allowed for now (Default Pass)
+        if (user && !user.profile) {
+            console.warn(`[checkUserAuthorization] User ${email} found without profile. Defaulting to allowed.`);
+            return true;
+        }
+
+        return user?.profile?.is_allowed ?? false;
     } catch (error) {
         console.error("Error checking authorization:", error);
         return false;
