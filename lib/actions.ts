@@ -6,6 +6,12 @@ import bcrypt from "bcryptjs"
 export async function checkUserAuthorization(email: string | null | undefined) {
     if (!email) return false;
 
+    // Check if waitlist is enabled via environment variable
+    // Default is disabled (returns true)
+    if (process.env.ENABLE_WAITLIST !== 'true') {
+        return true;
+    }
+
     try {
         const user = await prisma.user.findUnique({
             where: { email },
